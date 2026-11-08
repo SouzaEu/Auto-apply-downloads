@@ -85,13 +85,13 @@ test("ignores drafts, incomplete releases, foreign URLs and older versions", asy
   const result = await page({ platform: "Win32" }, [
     draft, incomplete, foreign, release("v2026.11.8.180", "windows"),
   ]);
-  assert.match(result.auto.href, /190-windows-beta/);
+  assert.match(result.auto.href, /191-windows-beta/);
 });
 
 test("stable publication replaces the beta and failed lookups preserve usable links", async () => {
-  const stable = await page({ platform: "Win32" }, [release("v2026.11.8.190", "windows")]);
+  const stable = await page({ platform: "Win32" }, [release("v2026.11.8.191", "windows")]);
   assert.equal(stable.status.hidden, true);
-  assert.match(stable.auto.href, /v2026.11.8.190\//);
+  assert.match(stable.auto.href, /v2026.11.8.191\//);
   const offline = await page({ platform: "MacIntel" }, [], true);
   assert.match(offline.auto.href, /CV-Auto-macos-arm64.dmg$/);
 });
