@@ -42,12 +42,18 @@ async function page(navigator, releases = [], error = false) {
     },
   });
   await new Promise(resolve => setImmediate(resolve));
-  return { auto: auto[0], windows: links.windows[0], macos: links.macos[0], status: statuses.windows[0] };
+  return { auto: auto[0], windows: links.windows[0], macos: links.macos[0], status: statuses.windows[0], cards };
 }
 
 test("chooses the appropriate desktop download and leaves phones on the download list", async () => {
-  assert.equal((await page({ userAgentData: { platform: "Windows" } })).auto.textContent, "Baixar para Windows");
-  assert.equal((await page({ platform: "MacIntel", maxTouchPoints: 0 })).auto.textContent, "Baixar para Mac");
+  const windows = await page({ userAgentData: { platform: "Windows" } });
+  assert.equal(windows.auto.textContent, "Baixar para Windows");
+  assert.equal(windows.cards.windows[0].hidden, false);
+  assert.equal(windows.cards.macos[0].hidden, true);
+  const mac = await page({ platform: "MacIntel", maxTouchPoints: 0 });
+  assert.equal(mac.auto.textContent, "Baixar para Mac");
+  assert.equal(mac.cards.windows[0].hidden, true);
+  assert.equal(mac.cards.macos[0].hidden, false);
   for (const navigator of [
     { platform: "MacIntel", maxTouchPoints: 5 },
     { userAgent: "Android", userAgentData: { platform: "Linux", mobile: true } },
