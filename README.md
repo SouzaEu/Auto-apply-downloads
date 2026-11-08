@@ -1,21 +1,12 @@
 # CV Auto — downloads oficiais
 
-Aplicativo Auto Apply para Mac com Apple Silicon e macOS 13 ou posterior.
+[Baixar para Windows — versão de teste](https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.8.189-windows-beta/CV-Auto-Windows-Setup.exe)
 
-[Baixar o instalador](https://github.com/SouzaEu/cv-auto-downloads/releases/latest)
-· [Página de download](https://souzaeu.github.io/cv-auto-downloads/)
+[Baixar para Mac](https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.8.188/CV-Auto-macos-arm64.dmg)
 
-Teste grátis de 7 dias por Mac e ativação por código de licença.
-O trial começa em Diagnóstico → Licença no aplicativo.
+[Página do CV Auto](https://souzaeu.github.io/cv-auto-downloads/)
 
-A distribuição usa assinatura ad hoc e acompanha SHA-256.
-O aplicativo não tem Developer ID nem notarização Apple.
-O macOS pode bloquear a primeira abertura.
-[Leia a orientação oficial da Apple](https://support.apple.com/pt-br/102445)
-antes de autorizar a abertura manual.
+Teste grátis de 7 dias por computador e ativação por código de licença.
 
-O instalador inclui um perfil de exemplo. Cadastre seus dados e currículo
-antes de usar a automação.
-
-As dependências e seus avisos de licença acompanham o aplicativo.
-PDFium substitui PyMuPDF na adaptação de currículo desde a Build 187.
+A versão Windows está publicada para avaliação e aguarda teste em Windows real.
+Os checksums e os detalhes de cada versão estão nos lançamentos.
