@@ -82,7 +82,6 @@ html { scroll-behavior: auto; }
 .featured { background: #e9e8e0; }
 .secondary { color: var(--ink); background: transparent; border: 1px solid var(--line); }
 .secondary:hover { background: #e4e3da; }
-.download-pending { font-weight: 600; color: var(--muted); }
 .footer-brand { font-size: 1.1rem; font-weight: 700; letter-spacing: -.04em; }
 .foot { padding-block: 1.75rem; font-size: .85rem; }
 .pricing-page { padding-block: 5rem; min-height: 75vh; }
