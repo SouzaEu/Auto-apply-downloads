@@ -62,7 +62,8 @@ figcaption { padding: .65rem 1rem; border-top: 1px solid #45463f; font-size: .75
 }
 @media (max-width: 520px) {
   .top { min-height: 68px; gap: .5rem; }
-  .top .brand { font-size: 1.45rem; }
+  .top .brand { font-size: 1.25rem; }
+  .top .mark { width: 26px; height: 26px; }
   .nav-download { padding-inline: .55rem; }
   nav a:first-child { display: none; }
   .steps { grid-template-columns: 1fr; gap: .6rem; }
