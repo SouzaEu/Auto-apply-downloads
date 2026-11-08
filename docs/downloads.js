@@ -46,6 +46,7 @@
         label.textContent = download.prerelease ? "Versão de teste" : "";
       });
       document.querySelectorAll(`[data-platform-card="${name}"]`).forEach(card => {
+        card.hidden = platform !== null && name !== platform;
         card.classList.toggle("featured", name === (platform || "windows"));
       });
     }
