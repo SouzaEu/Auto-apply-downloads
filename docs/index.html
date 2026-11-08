@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Auto Apply para sua busca de emprego. Busque vagas, prepare candidaturas e acompanhe seus envios em um só lugar.">
-  <title>CV Auto — Sua próxima oportunidade</title>
+  <title>Auto Apply — Sua próxima oportunidade</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <header class="top shell">
-    <a class="brand" href="./" aria-label="CV Auto, início"><span class="mark" aria-hidden="true">↗</span> CV Auto<span class="brand-dot">.</span></a>
+    <a class="brand" href="./" aria-label="Auto Apply, início"><span class="mark" aria-hidden="true">↗</span> Auto Apply<span class="brand-dot">.</span></a>
     <nav aria-label="Navegação principal">
-      <a href="#como-funciona">Como funciona</a><a href="./planos.html">Planos</a><a class="nav-download" href="#download">Baixar</a>
+      <a href="#como-funciona">Como funciona</a><a href="./planos.html">Planos</a><a class="nav-download" href="#download" data-download-auto>Baixar</a>
     </nav>
   </header>
   <main id="conteudo">
@@ -21,7 +21,7 @@
         <p class="eyebrow"><span class="dot"></span> SUA BUSCA DE EMPREGO, MAIS SIMPLES</p>
         <h1>Organize sua busca.<br><em>Automatize a candidatura.</em></h1>
         <p class="intro">Defina o tipo de vaga que você procura. O Auto Apply usa seu perfil e currículo para preparar candidaturas e mostra o que foi enviado, o que está pendente e o que precisa da sua revisão.</p>
-        <a href="#download" class="button">Experimentar grátis</a>
+        <a href="#download" class="button" data-download-auto>Experimentar grátis</a>
         <p class="micro">7 dias grátis <span aria-hidden="true">·</span> Sem cartão</p>
       </div>
       <figure class="demo">
@@ -48,17 +48,18 @@
     <section id="download" class="section shell downloads">
       <div class="download-heading"><p class="eyebrow">COMECE NO SEU COMPUTADOR</p><h2>Seu próximo passo.</h2><p>Experimente o Auto Apply grátis por 7 dias.</p></div>
       <div class="download-options">
-        <article class="download-option featured">
+        <article class="download-option featured" data-platform-card="windows">
           <span class="eyebrow">WINDOWS</span><h3>Para o seu PC.</h3><p>Windows 10 ou 11 · 64 bits</p>
-          <a class="button" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.8.189-windows-beta/CV-Auto-Windows-Setup.exe">Baixar para Windows</a><p class="micro">Versão de teste</p>
+          <a class="button" data-download-platform="windows" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.8.189-windows-beta/CV-Auto-Windows-Setup.exe">Baixar para Windows</a><p class="micro" data-platform-status="windows">Versão de teste</p>
         </article>
-        <article class="download-option">
+        <article class="download-option" data-platform-card="macos">
           <span class="eyebrow">MACOS</span><h3>Para o seu Mac.</h3><p>Apple Silicon · macOS 13 ou posterior</p>
-          <a class="button secondary" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.8.188/CV-Auto-macos-arm64.dmg">Baixar para Mac</a>
+          <a class="button secondary" data-download-platform="macos" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.8.188/CV-Auto-macos-arm64.dmg">Baixar para Mac</a>
         </article>
       </div>
     </section>
   </main>
-  <footer class="shell foot"><a class="footer-brand" href="./">CV Auto.</a><a href="./planos.html">Planos</a></footer>
+  <script src="./downloads.js" defer></script>
+  <footer class="shell foot"><a class="footer-brand" href="./">Auto Apply.</a><a href="./planos.html">Planos</a></footer>
 </body>
 </html>
