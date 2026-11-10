@@ -67,9 +67,9 @@ test("chooses the appropriate desktop download and leaves phones on the download
 test("selects each platform independently, including the published Windows beta", async () => {
   const result = await page({ platform: "Win32" }, [
     release("v2026.11.8.188", "macos"),
-    release("v2026.11.9.200", "macos"),
-    release("v2026.11.9.199-windows-beta", "windows", true),
-    release("v2026.11.9.198", "windows"),
+    release("v2026.11.11.200", "macos"),
+    release("v2026.11.11.199-windows-beta", "windows", true),
+    release("v2026.11.11.198", "windows"),
   ]);
   assert.match(result.auto.href, /199-windows-beta\/CV-Auto-Windows-Setup.exe$/);
   assert.match(result.macos.href, /200\/CV-Auto-macos-arm64.dmg$/);
@@ -77,21 +77,21 @@ test("selects each platform independently, including the published Windows beta"
 });
 
 test("ignores drafts, incomplete releases, foreign URLs and older versions", async () => {
-  const draft = { ...release("v2026.11.9.220", "windows"), draft: true };
-  const incomplete = release("v2026.11.9.221", "windows");
+  const draft = { ...release("v2026.11.11.220", "windows"), draft: true };
+  const incomplete = release("v2026.11.11.221", "windows");
   incomplete.assets.pop();
-  const foreign = release("v2026.11.9.222", "windows");
+  const foreign = release("v2026.11.11.222", "windows");
   foreign.assets[0].browser_download_url = "https://example.invalid/app.exe";
   const result = await page({ platform: "Win32" }, [
     draft, incomplete, foreign, release("v2026.11.8.180", "windows"),
   ]);
-  assert.match(result.auto.href, /192-windows-beta/);
+  assert.match(result.auto.href, /193-windows-beta/);
 });
 
 test("stable publication replaces the beta and failed lookups preserve usable links", async () => {
-  const stable = await page({ platform: "Win32" }, [release("v2026.11.9.192", "windows")]);
+  const stable = await page({ platform: "Win32" }, [release("v2026.11.10.193", "windows")]);
   assert.equal(stable.status.hidden, true);
-  assert.match(stable.auto.href, /v2026.11.9.192\//);
+  assert.match(stable.auto.href, /v2026.11.10.193\//);
   const offline = await page({ platform: "MacIntel" }, [], true);
   assert.match(offline.auto.href, /CV-Auto-macos-arm64.dmg$/);
 });
