@@ -1,65 +1,42 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Auto Apply para sua busca de emprego. Busque vagas, prepare candidaturas e acompanhe seus envios em um só lugar.">
-  <title>Auto Apply — Sua próxima oportunidade</title>
-  <link rel="stylesheet" href="./style.css?v=193">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f1ec">
+  <meta name="description" content="Auto Apply: encontre vagas, prepare candidaturas com seu perfil e acompanhe cada etapa em um só lugar.">
+  <title>Auto Apply — Sua busca em movimento.</title>
+  <link rel="stylesheet" href="./style.css?v=194">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+  <script src="./downloads.js?v=193" defer></script>
+  <script src="./site.js?v=194" defer></script>
+  <script src="./scene.js?v=194" type="module"></script>
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-  <header class="top shell">
-    <a class="brand" href="./" aria-label="Auto Apply, início"><span class="mark" aria-hidden="true">↗</span> Auto Apply<span class="brand-dot">.</span></a>
-    <nav aria-label="Navegação principal">
-      <a href="#como-funciona">Como funciona</a><a href="./planos.html">Planos</a><a class="nav-download" href="#download" data-download-auto>Baixar</a>
-    </nav>
+  <header class="header wrap">
+    <a class="logo" href="#inicio" aria-label="Auto Apply, início">auto apply<span>®</span></a>
+    <nav aria-label="Navegação principal"><a href="#visao">A visão</a><a href="#fluxo">O fluxo <sup>03</sup></a><a href="#como-funciona">Como funciona</a><a href="./planos.html">Planos</a><a class="nav-cta" href="#download">Começar <span>↗</span></a></nav>
+    <button class="theme-toggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false">◐</button>
   </header>
   <main id="conteudo">
-    <section class="hero shell">
-      <div>
-        <p class="eyebrow"><span class="dot"></span> SUA BUSCA DE EMPREGO, MAIS SIMPLES</p>
-        <h1>Organize sua busca.<br><em>Automatize a candidatura.</em></h1>
-        <p class="intro">Defina o tipo de vaga que você procura. O Auto Apply usa seu perfil e currículo para preparar candidaturas e mostra o que foi enviado, o que está pendente e o que precisa da sua revisão.</p>
-        <a href="#download" class="button" data-download-auto>Experimentar grátis</a>
-        <p class="micro">7 dias grátis <span aria-hidden="true">·</span> Sem cartão</p>
-      </div>
-      <figure class="demo">
-        <div class="demo-top"><span aria-hidden="true">● ● ●</span><span>Auto Apply</span><span aria-hidden="true">↗</span></div>
-        <div class="demo-body">
-          <p class="eyebrow">ESPAÇO DE TRABALHO</p>
-          <p class="demo-title">Minhas candidaturas</p>
-          <div class="demo-row"><span class="row-icon" aria-hidden="true">↗</span><div><strong>Assistente administrativo</strong><small>Seleção de vagas</small></div><span class="badge">Encontrada</span></div>
-          <div class="demo-row"><span class="row-icon" aria-hidden="true">?</span><div><strong>Analista de operações</strong><small>Formulário</small></div><span class="badge warm">Revisar</span></div>
-          <div class="demo-row"><span class="row-icon" aria-hidden="true">✓</span><div><strong>Auxiliar de escritório</strong><small>Histórico</small></div><span class="badge green">Confirmada</span></div>
-        </div>
-        <figcaption>Exemplo ilustrativo do painel</figcaption>
-      </figure>
+    <section class="hero wrap" id="inicio">
+      <div class="eyebrow hero-label"><i></i> SUA BUSCA DE EMPREGO EM MOVIMENTO <span class="concept">AUTO APPLY / 01</span></div>
+      <div class="hero-type"><h1><span class="line">Sua busca.</span><span class="line">Seu ritmo.</span><span class="line italic">Novos caminhos.</span></h1></div>
+      <div class="sculpture" role="img" aria-label="Escultura metálica tridimensional em movimento"><div class="sculpture-fallback" aria-hidden="true"></div><canvas id="sculpture" aria-hidden="true"></canvas><div class="object-caption"><span>FIG. 01 — OPORTUNIDADES EM MOVIMENTO</span><span class="live-dot">VISUAL INTERATIVO</span></div></div>
+      <div class="hero-bottom"><p>Encontre vagas compatíveis.<br>Prepare candidaturas com seu perfil.<br>Acompanhe cada etapa com clareza.</p><a class="round-link" href="#visao">Explore com calma <b aria-hidden="true">↓</b></a><a class="hero-download" href="#download">Experimentar grátis ↗</a></div>
     </section>
-    <section id="como-funciona" class="section shell">
-      <p class="eyebrow">01 / FLUXO DE TRABALHO</p>
-      <h2>Da busca ao acompanhamento.</h2>
-      <ol class="steps">
-        <li><span class="step-index">01</span><h3>Cadastre seu perfil</h3><p>Adicione o currículo e defina cargo, localização e preferências de busca.</p></li>
-        <li><span class="step-index">02</span><h3>Prepare candidaturas</h3><p>Use os dados do seu perfil para preencher formulários e adaptar o currículo em vagas compatíveis.</p></li>
-        <li><span class="step-index">03</span><h3>Acompanhe cada etapa</h3><p>Veja pendências e recibos no painel. Algumas vagas exigem login, respostas adicionais ou ação manual.</p></li>
-      </ol>
-    </section>
-    <section id="download" class="section shell downloads">
-      <div class="download-heading"><p class="eyebrow">COMECE NO SEU COMPUTADOR</p><h2>Seu próximo passo.</h2><p>Experimente o Auto Apply grátis por 7 dias.</p></div>
-      <div class="download-options">
-        <article class="download-option featured" data-platform-card="windows">
-          <span class="eyebrow">WINDOWS</span><h3>Para o seu PC.</h3><p>Windows 10 ou 11 · 64 bits</p>
-          <a class="button" data-download-platform="windows" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.10.193-windows-beta/CV-Auto-Windows-Setup.exe">Baixar para Windows</a><p class="micro" data-platform-status="windows">Versão de teste</p><p class="micro">O instalador beta ainda pode exibir um aviso do SmartScreen.</p>
-        </article>
-        <article class="download-option" data-platform-card="macos">
-          <span class="eyebrow">MACOS</span><h3>Para o seu Mac.</h3><p>Apple Silicon · macOS 13 ou posterior</p>
-          <a class="button secondary" data-download-platform="macos" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.10.193/CV-Auto-macos-arm64.dmg">Baixar para Mac</a>
-        </article>
-      </div>
-    </section>
+    <section class="vision wrap" id="visao"><div class="section-tag"><span>01 / A VISÃO</span><span>MENOS REPETIÇÃO. MAIS DIREÇÃO.</span></div><h2 class="manifesto">Buscar uma oportunidade exige tempo. O Auto Apply ajuda você a encontrar vagas, preparar candidaturas e saber <em>exatamente onde cada uma está.</em></h2><div class="vision-bottom"><span class="asterisk" aria-hidden="true">✳</span><p>Seu currículo, suas preferências,<br>seu objetivo profissional.</p><p>Você acompanha envios, pendências<br>e confirmações no mesmo lugar.</p></div></section>
+    <section class="showcase" id="fluxo"><div class="wrap section-tag"><span>02 / O FLUXO</span><span>DA BUSCA AO ACOMPANHAMENTO.</span></div><div class="wrap showcase-head"><h2>Uma busca.<br><em>Mais possibilidades.</em></h2><p>Três momentos conectados.<br>O controle continua com você.</p></div><div class="wrap stages">
+      <article class="stage stage-search"><div class="stage-top"><span>01 / ENCONTRAR</span><span>↗</span></div><div class="stage-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="orbit-center">01</span><span class="stage-word">Vagas que fazem<br><em>sentido.</em></span></div><div class="stage-foot"><h3>Defina o que procura.</h3><p>Cargo, localização e preferências orientam a seleção de vagas compatíveis.</p></div></article>
+      <article class="stage stage-prepare"><div class="stage-top"><span>02 / PREPARAR</span><span>↗</span></div><div class="stage-art"><div class="paper paper-back"></div><div class="paper paper-front"><span>PERFIL / CURRÍCULO</span><b>Seu percurso<br>conta.</b><i></i><i></i><i></i></div><span class="stage-word">Cada detalhe<br><em>no lugar.</em></span></div><div class="stage-foot"><h3>Prepare candidaturas.</h3><p>Use os dados do seu perfil para preencher formulários e adaptar o currículo.</p></div></article>
+      <article class="stage stage-follow"><div class="stage-top"><span>03 / ACOMPANHAR</span><span>↗</span></div><div class="stage-art"><div class="status status-one">Encontrada <span>●</span></div><div class="status status-two">Revisar <span>●</span></div><div class="status status-three">Confirmada <span>●</span></div><span class="stage-word">Cada passo<br><em>à vista.</em></span></div><div class="stage-foot"><h3>Saiba o que aconteceu.</h3><p>Veja pendências e recibos. Algumas vagas exigem login, respostas ou ação manual.</p></div></article>
+    </div></section>
+    <section class="approach wrap" id="como-funciona"><div class="section-tag"><span>03 / COMO FUNCIONA</span><span>DO SEU PERFIL À CANDIDATURA.</span></div><div class="approach-head"><h2>Menos trabalho repetido.<br><em>Mais foco</em> no próximo passo.</h2><p>Uma ferramenta para apoiar sua busca,<br>com visibilidade sobre o processo.</p></div><div class="approach-rows"><article><span>01</span><h3>Comece pelo seu perfil.</h3><p>Adicione o currículo e configure cargo, localização e preferências.</p><b aria-hidden="true">↗</b></article><article><span>02</span><h3>Encontre vagas compatíveis.</h3><p>Revise o que foi encontrado e acompanhe a preparação dos formulários.</p><b aria-hidden="true">↗</b></article><article><span>03</span><h3>Acompanhe cada etapa.</h3><p>Veja o que foi confirmado e o que ainda precisa da sua atenção.</p><b aria-hidden="true">↗</b></article></div></section>
+    <section class="download wrap" id="download"><div class="section-tag"><span>04 / O PRÓXIMO PASSO</span><span>SETE DIAS PARA EXPLORAR.</span></div><div class="download-head"><h2>Vamos colocar sua busca<br><em>em movimento?</em></h2><p>Experimente grátis por 7 dias.<br>Sem cartão e sem cobrança automática.</p></div><div class="download-options">
+      <article class="download-option" data-platform-card="windows"><span class="eyebrow">WINDOWS / VERSÃO DE TESTE</span><h3>Para o seu PC.</h3><p>Windows 10 ou 11 · 64 bits</p><a class="download-link" data-download-platform="windows" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.10.193-windows-beta/CV-Auto-Windows-Setup.exe">Baixar para Windows <span>↗</span></a><p class="fine" data-platform-status="windows">Versão de teste</p><p class="fine">O instalador beta ainda pode exibir um aviso do SmartScreen.</p></article>
+      <article class="download-option" data-platform-card="macos"><span class="eyebrow">MACOS</span><h3>Para o seu Mac.</h3><p>Apple Silicon · macOS 13 ou posterior</p><a class="download-link" data-download-platform="macos" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.10.193/CV-Auto-macos-arm64.dmg">Baixar para Mac <span>↗</span></a></article>
+    </div><div class="download-bottom"><span>SOFTWARE PARA SUA BUSCA DE EMPREGO</span><a href="./planos.html">Conhecer o plano ↗</a></div></section>
   </main>
-  <script src="./downloads.js?v=193" defer></script>
-  <footer class="shell foot"><a class="footer-brand" href="./">Auto Apply.</a><a href="./planos.html">Planos</a></footer>
+  <footer class="footer wrap"><a class="logo" href="#inicio">auto apply<span>®</span></a><span>Sua busca, em movimento.</span><a href="./planos.html">Planos ↗</a><a href="./creditos.html">Créditos ↗</a></footer>
 </body>
 </html>
