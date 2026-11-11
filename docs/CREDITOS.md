@@ -9,4 +9,4 @@ O site do Auto Apply adapta a estrutura visual e as interações do projeto [For
 - A transição de rolagem usa GSAP 3.12.5 e ScrollTrigger 3.12.5, com arquivos locais e avisos originais preservados. Consulte os [termos da GSAP](https://gsap.com/standard-license/).
 - A técnica de transição entre painéis foi adaptada de Cinematic Scroll Landing sob licença MIT. Texto em `vendor/CINEMATIC-LICENSE.txt`.
 
-A página de downloads consulta os lançamentos públicos do repositório `SouzaEu/cv-auto-downloads` para localizar instaladores com seus respectivos checksums. O conteúdo da página não envia dados de candidatos.
+A página de downloads consulta os lançamentos públicos do repositório `SouzaEu/Auto-apply-downloads` para localizar instaladores com seus respectivos checksums. O conteúdo da página não envia dados de candidatos.

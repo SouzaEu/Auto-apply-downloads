@@ -4,7 +4,7 @@ import test from "node:test";
 import vm from "node:vm";
 
 const code = await readFile(new URL("../docs/downloads.js", import.meta.url), "utf8");
-const base = "https://github.com/SouzaEu/cv-auto-downloads/releases/download/";
+const base = "https://github.com/SouzaEu/Auto-apply-downloads/releases/download/";
 const assets = { windows: "CV-Auto-Windows-Setup.exe", macos: "CV-Auto-macos-arm64.dmg" };
 
 function release(tag, platform, prerelease = false) {
