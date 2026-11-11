@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const repository = "SouzaEu/cv-auto-downloads";
+  const repository = "SouzaEu/Auto-apply-downloads";
   const downloads = {
     windows: {
       label: "Baixar para Windows",
