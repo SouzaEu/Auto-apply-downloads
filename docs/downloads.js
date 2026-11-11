@@ -36,6 +36,11 @@
   }
 
   const platform = detectPlatform();
+  const betaLabels = {
+    "pt-BR": "Versão de teste",
+    en: "Beta version",
+    es: "Versión de prueba",
+  };
   function renderDownloads() {
     for (const [name, download] of Object.entries(downloads)) {
       document.querySelectorAll(`[data-download-platform="${name}"]`).forEach(link => {
@@ -43,7 +48,9 @@
       });
       document.querySelectorAll(`[data-platform-status="${name}"]`).forEach(label => {
         label.hidden = !download.prerelease;
-        label.textContent = download.prerelease ? "Versão de teste" : "";
+        label.textContent = download.prerelease
+          ? betaLabels[document.documentElement?.lang] || betaLabels["pt-BR"]
+          : "";
       });
       document.querySelectorAll(`[data-platform-card="${name}"]`).forEach(card => {
         card.hidden = platform !== null && name !== platform;
@@ -71,6 +78,7 @@
   }
 
   renderDownloads();
+  globalThis.addEventListener?.("forma-language", renderDownloads);
   fetch(`https://api.github.com/repos/${repository}/releases?per_page=100`, {
     credentials: "omit",
     headers: { Accept: "application/vnd.github+json" },

@@ -4,6 +4,7 @@
  */
 import * as THREE from 'three';
 import { RoomEnvironment } from './vendor/RoomEnvironment.js';
+import { t } from './i18n.js';
 
 const canvas = document.querySelector('#sculpture');
 const host = canvas.parentElement;
@@ -24,7 +25,9 @@ const pointer = { x: 0, y: 0 };
 const smooth = { x: 0, y: 0 };
 
 function updateCaption() {
-  host.querySelector('.live-dot').textContent = host.classList.contains('ready') ? 'VISUAL INTERATIVO' : 'MODO COMPATÍVEL';
+  host.querySelector('.live-dot').textContent = t(
+    host.classList.contains('ready') ? 'render.live' : 'render.fallback',
+  );
 }
 function stop() {
   cancelAnimationFrame(frame);
@@ -85,6 +88,7 @@ const observer = new IntersectionObserver(([entry]) => {
   syncVisibility();
 });
 observer.observe(host);
+listen(window, 'forma-language', updateCaption);
 updateCaption();
 try {
   // Probe quietly: an unavailable context is an expected progressive fallback.
@@ -163,7 +167,7 @@ try {
     resizer.observe(host);
     resize();
     theme();
-    listen(window, 'auto-theme', theme);
+    listen(window, 'forma-theme', theme);
     // Host is decorative; pointer input is bounded to its hero instead.
     listen(
       host.closest('.hero'),
@@ -185,7 +189,7 @@ try {
       pointer.x = 0;
       pointer.y = 0;
     });
-    listen(window, 'auto-motion', (event) => {
+    listen(window, 'forma-motion', (event) => {
       paused = event.detail.paused;
       stop();
       resume();

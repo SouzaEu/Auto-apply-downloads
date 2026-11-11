@@ -1,42 +1,255 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f2f1ec">
-  <meta name="description" content="Auto Apply: encontre vagas, prepare candidaturas com seu perfil e acompanhe cada etapa em um só lugar.">
-  <title>Auto Apply — Sua busca em movimento.</title>
-  <link rel="stylesheet" href="./style.css?v=195">
-  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
-  <script src="./downloads.js?v=193" defer></script>
-  <script src="./site.js?v=194" defer></script>
-  <script src="./scene.js?v=194" type="module"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<script src="bootstrap.js"></script>
+<meta content="#f2f1ec" name="theme-color"/>
+<meta content="Auto Apply: encontre vagas, prepare candidaturas e acompanhe cada etapa." name="description"/>
+<title>Auto Apply — Sua busca em movimento.</title>
+<link href="style.css?v=200" rel="stylesheet"/>
+<script type="importmap">
+      { "imports": { "three": "./vendor/three.module.js" } }
+    </script>
+<script defer="" src="vendor/gsap.min.js"></script>
+<script defer="" src="vendor/ScrollTrigger.min.js"></script>
+<script defer="" src="downloads.js?v=200"></script>
+<meta content="website" property="og:type"/>
+<meta content="Auto Apply — Sua busca em movimento." property="og:title"/>
+<meta content="Auto Apply: encontre vagas, prepare candidaturas e acompanhe cada etapa." property="og:description"/>
+<meta content="pt_BR" property="og:locale"/>
 </head>
 <body>
-  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-  <header class="header wrap">
-    <a class="logo" href="#inicio" aria-label="Auto Apply, início">auto apply<span>®</span></a>
-    <nav aria-label="Navegação principal"><a href="#visao">A visão</a><a href="#fluxo">O fluxo <sup>03</sup></a><a href="#como-funciona">Como funciona</a><a href="./planos.html">Planos</a><a class="nav-cta" href="#download">Começar <span>↗</span></a></nav>
-    <button class="theme-toggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false">◐</button>
-  </header>
-  <main id="conteudo">
-    <section class="hero wrap" id="inicio">
-      <div class="eyebrow hero-label"><i></i> SUA BUSCA DE EMPREGO EM MOVIMENTO <span class="concept">AUTO APPLY / 01</span></div>
-      <div class="hero-type"><h1><span class="line">Sua busca.</span><span class="line">Seu ritmo.</span><span class="line italic">Novos caminhos.</span></h1></div>
-      <div class="sculpture" role="img" aria-label="Escultura metálica tridimensional em movimento"><div class="sculpture-fallback" aria-hidden="true"></div><canvas id="sculpture" aria-hidden="true"></canvas><div class="object-caption"><span>FIG. 01 — OPORTUNIDADES EM MOVIMENTO</span><span class="live-dot">VISUAL INTERATIVO</span></div></div>
-      <div class="hero-bottom"><p>Encontre vagas compatíveis.<br>Prepare candidaturas com seu perfil.<br>Acompanhe cada etapa com clareza.</p><a class="round-link" href="#visao">Explore com calma <b aria-hidden="true">↓</b></a><a class="hero-download" href="#download">Experimentar grátis ↗</a></div>
-    </section>
-    <section class="vision wrap" id="visao"><div class="section-tag"><span>01 / A VISÃO</span><span>MENOS REPETIÇÃO. MAIS DIREÇÃO.</span></div><h2 class="manifesto">Buscar uma oportunidade exige tempo. O Auto Apply ajuda você a encontrar vagas, preparar candidaturas e saber <em>exatamente onde cada uma está.</em></h2><div class="vision-bottom"><span class="asterisk" aria-hidden="true">✳</span><p>Seu currículo, suas preferências,<br>seu objetivo profissional.</p><p>Você acompanha envios, pendências<br>e confirmações no mesmo lugar.</p></div></section>
-    <section class="showcase" id="fluxo"><div class="wrap section-tag"><span>02 / O FLUXO</span><span>DA BUSCA AO ACOMPANHAMENTO.</span></div><div class="wrap showcase-head"><h2>Uma busca.<br><em>Mais possibilidades.</em></h2><p>Três momentos conectados.<br>O controle continua com você.</p></div><div class="wrap stages">
-      <article class="stage stage-search"><div class="stage-top"><span>01 / ENCONTRAR</span><span>↗</span></div><div class="stage-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="orbit-center">01</span><span class="stage-word">Vagas que fazem<br><em>sentido.</em></span></div><div class="stage-foot"><h3>Defina o que procura.</h3><p>Cargo, localização e preferências orientam a seleção de vagas compatíveis.</p></div></article>
-      <article class="stage stage-prepare"><div class="stage-top"><span>02 / PREPARAR</span><span>↗</span></div><div class="stage-art"><div class="paper paper-back"></div><div class="paper paper-front"><span>PERFIL / CURRÍCULO</span><b>Seu percurso<br>conta.</b><i></i><i></i><i></i></div><span class="stage-word">Cada detalhe<br><em>no lugar.</em></span></div><div class="stage-foot"><h3>Prepare candidaturas.</h3><p>Use os dados do seu perfil para preencher formulários e adaptar o currículo.</p></div></article>
-      <article class="stage stage-follow"><div class="stage-top"><span>03 / ACOMPANHAR</span><span>↗</span></div><div class="stage-art"><div class="status status-one">Encontrada <span>●</span></div><div class="status status-two">Revisar <span>●</span></div><div class="status status-three">Confirmada <span>●</span></div><span class="stage-word">Cada passo<br><em>à vista.</em></span></div><div class="stage-foot"><h3>Saiba o que aconteceu.</h3><p>Veja pendências e recibos. Algumas vagas exigem login, respostas ou ação manual.</p></div></article>
-    </div></section>
-    <section class="approach wrap" id="como-funciona"><div class="section-tag"><span>03 / COMO FUNCIONA</span><span>DO SEU PERFIL À CANDIDATURA.</span></div><div class="approach-head"><h2>Menos trabalho repetido.<br><em>Mais foco</em> no próximo passo.</h2><p>Uma ferramenta para apoiar sua busca,<br>com visibilidade sobre o processo.</p></div><div class="approach-rows"><article><span>01</span><h3>Comece pelo seu perfil.</h3><p>Adicione o currículo e configure cargo, localização e preferências.</p><b aria-hidden="true">↗</b></article><article><span>02</span><h3>Encontre vagas compatíveis.</h3><p>Revise o que foi encontrado e acompanhe a preparação dos formulários.</p><b aria-hidden="true">↗</b></article><article><span>03</span><h3>Acompanhe cada etapa.</h3><p>Veja o que foi confirmado e o que ainda precisa da sua atenção.</p><b aria-hidden="true">↗</b></article></div></section>
-    <section class="download wrap" id="download"><div class="section-tag"><span>04 / O PRÓXIMO PASSO</span><span>SETE DIAS PARA EXPLORAR.</span></div><div class="download-head"><h2>Vamos colocar sua busca<br><em>em movimento?</em></h2><p>Experimente grátis por 7 dias.<br>Sem cartão e sem cobrança automática.</p></div><div class="download-options">
-      <article class="download-option" data-platform-card="windows"><span class="eyebrow">WINDOWS / VERSÃO DE TESTE</span><h3>Para o seu PC.</h3><p>Windows 10 ou 11 · 64 bits</p><a class="download-link" data-download-platform="windows" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.10.193-windows-beta/CV-Auto-Windows-Setup.exe">Baixar para Windows <span>↗</span></a><p class="fine" data-platform-status="windows">Versão de teste</p><p class="fine">O instalador beta ainda pode exibir um aviso do SmartScreen.</p></article>
-      <article class="download-option" data-platform-card="macos"><span class="eyebrow">MACOS</span><h3>Para o seu Mac.</h3><p>Apple Silicon · macOS 13 ou posterior</p><a class="download-link" data-download-platform="macos" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.10.193/CV-Auto-macos-arm64.dmg">Baixar para Mac <span>↗</span></a></article>
-    </div><div class="download-bottom"><span>SOFTWARE PARA SUA BUSCA DE EMPREGO</span><a href="./planos.html">Conhecer o plano ↗</a></div></section>
-  </main>
-  <footer class="footer wrap"><a class="logo" href="#inicio">auto apply<span>®</span></a><span>Sua busca, em movimento.</span><a href="./planos.html">Planos ↗</a><a href="./creditos.html">Créditos ↗</a></footer>
+<a class="skip" data-i18n="skip" href="#main">Ir ao conteúdo</a>
+<div aria-hidden="true" class="progress"></div>
+<header class="header">
+<a aria-label="Auto Apply, início" class="logo" data-i18n-aria-label="home" href="#inicio">auto apply<span>®</span></a>
+<nav aria-label="Principal" class="nav" data-i18n-aria-label="nav">
+<a data-i18n="nav.vision" href="#visao">A visão</a><a data-i18n="nav.explorations" href="#experimentos">O fluxo <sup>03</sup></a><a data-i18n="nav.process" href="#processo">Como funciona</a><a class="text-button" data-i18n="nav.create" href="#contato">Começar <span>↗</span></a>
+</nav>
+<div class="header-actions">
+<div class="preferences">
+<label class="language-control"><span class="sr-only" data-i18n="language">Idioma</span><select aria-label="Idioma" class="language-select" data-i18n-aria-label="language">
+<option lang="pt-BR" value="pt-BR">PT</option>
+<option lang="en" value="en">EN</option>
+<option lang="es" value="es">ES</option></select><span aria-hidden="true">⌄</span></label><button aria-label="Ativar tema escuro" class="theme-toggle" type="button">
+<svg aria-hidden="true" class="icon-moon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<path d="M20.5 13.1A8.7 8.7 0 0 1 10.9 3.5a8.7 8.7 0 1 0 9.6 9.6Z"></path></svg><svg aria-hidden="true" class="icon-sun" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="3.5"></circle>
+<path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path>
+</svg>
+</button>
+</div>
+<button aria-controls="mobile-nav" aria-expanded="false" aria-haspopup="dialog" class="menu-button" data-i18n="menu" type="button">
+          Menu <span aria-hidden="true" class="menu-icon"><i></i><i></i></span>
+</button>
+</div>
+</header>
+<dialog aria-labelledby="menu-title" class="mobile-nav" id="mobile-nav">
+<div class="mobile-nav-head">
+<span data-i18n="menu.title" id="menu-title">Explore o Auto Apply</span><button aria-label="Fechar menu" class="mobile-close" data-i18n-aria-label="menu.close" type="button">
+          ×
+        </button>
+</div>
+<nav aria-label="Navegação móvel" data-i18n-aria-label="menu.nav">
+<a data-i18n="mobile.vision" href="#visao"><small>01</small>A visão<span aria-hidden="true">↗</span></a><a data-i18n="mobile.explorations" href="#experimentos"><small>02</small>O fluxo<span aria-hidden="true">↗</span></a><a data-i18n="mobile.process" href="#processo"><small>03</small>Como funciona<span aria-hidden="true">↗</span></a><a data-i18n="mobile.contact" href="#contato"><small>04</small>Baixar<span aria-hidden="true">↗</span></a>
+</nav>
+<a class="mobile-cta" data-i18n="start" href="#download">Ver downloads <span aria-hidden="true">↗</span></a>
+<p class="mobile-nav-note" data-i18n="menu.note">Sua busca começa por aqui.</p>
+<div class="mobile-preferences">
+<span data-i18n="preferences">Do seu jeito</span>
+<div class="preferences">
+<label class="language-control"><span class="sr-only" data-i18n="language">Idioma</span><select aria-label="Idioma" class="language-select" data-i18n-aria-label="language">
+<option lang="pt-BR" value="pt-BR">PT</option>
+<option lang="en" value="en">EN</option>
+<option lang="es" value="es">ES</option></select><span aria-hidden="true">⌄</span></label><button aria-label="Ativar tema escuro" class="theme-toggle" type="button">
+<svg aria-hidden="true" class="icon-moon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<path d="M20.5 13.1A8.7 8.7 0 0 1 10.9 3.5a8.7 8.7 0 1 0 9.6 9.6Z"></path></svg><svg aria-hidden="true" class="icon-sun" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="3.5"></circle>
+<path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path>
+</svg>
+</button>
+</div>
+</div>
+</dialog>
+<main id="main">
+<section class="hero wrap" id="inicio">
+<div class="eyebrow hero-label" data-i18n="hero.label"><i></i> SUA BUSCA DE EMPREGO EM MOVIMENTO <span class="concept">AUTO APPLY / 01</span></div>
+<div class="hero-type">
+<h1>
+<span class="line"><span data-i18n="hero.line1">Sua busca</span></span><span class="line"><span data-i18n="hero.line2">ganha</span></span><span class="line"><span class="italic" data-i18n="hero.line3">movimento.</span></span>
+</h1>
+</div>
+<div aria-label="Escultura metálica tridimensional em movimento" class="sculpture" data-i18n-aria-label="sculpture" role="img">
+<div aria-hidden="true" class="sculpture-fallback"></div>
+<canvas aria-hidden="true" id="sculpture"></canvas>
+<div class="object-caption">
+<span data-i18n="sculpture.caption">FIG. 01 — OPORTUNIDADES EM MOVIMENTO</span><span class="live-dot" data-i18n="render.fallback">MODO COMPATÍVEL</span>
+</div>
+</div>
+<div class="hero-bottom">
+<p data-i18n="hero.note">Encontre vagas compatíveis.<br/>Prepare candidaturas com seu perfil.<br/>Acompanhe cada etapa com clareza.</p>
+<a class="round-link" href="#visao"><span data-i18n="explore">Explore com calma</span><b aria-hidden="true">↓</b></a><button aria-label="Reduzir movimento" aria-pressed="false" class="motion" id="motion">
+            Ⅱ <span>Pausar movimento</span>
+</button>
+</div>
+</section>
+<section class="vision wrap" id="visao" tabindex="-1">
+<div class="section-tag">
+<span data-i18n="vision.tag">01 / A VISÃO</span><span data-i18n="vision.tagline">MENOS REPETIÇÃO. MAIS DIREÇÃO.</span>
+</div>
+<h2 class="manifesto" data-i18n="vision.manifesto">Buscar uma oportunidade exige tempo. O Auto Apply ajuda você a encontrar vagas, preparar candidaturas e saber <em>exatamente onde cada uma está.</em></h2>
+<div class="vision-bottom">
+<span aria-hidden="true" class="asterisk">✳</span>
+<p data-i18n="vision.parts">Seu currículo, suas preferências,<br/>seu objetivo profissional.</p>
+<p data-i18n="vision.lab">Você acompanha envios, pendências<br/>e confirmações no mesmo lugar.</p>
+</div>
+</section>
+<section class="experiments" id="experimentos">
+<div class="wrap section-tag">
+<span data-i18n="work.tag">02 / O FLUXO</span><span data-i18n="work.tagline">DA BUSCA AO ACOMPANHAMENTO.</span>
+</div>
+<div class="showcase">
+<div class="showcase-sticky">
+<div class="showcase-header wrap">
+<h2 data-i18n="work.title">Uma busca.<br/><em>Mais possibilidades.</em></h2>
+<p data-i18n="work.note">Três momentos conectados.<br/>O controle continua com você.</p>
+<span class="scene-count"><b id="scene-number">01</b> / 03</span>
+</div>
+<div class="project-stage wrap">
+<article class="project project-orbe" data-project="0">
+<div class="project-meta">
+<span data-i18n="stage.search">busca®</span><span data-i18n="orbe.category">BUSCA DE VAGAS</span>
+</div>
+<div class="orbe-art">
+<div class="arch arch-one"></div>
+<div class="arch arch-two"></div>
+<div class="arch arch-three"></div>
+<div class="orbe-sun"></div>
+<div class="art-caption" data-i18n="orbe.title">Vagas que fazem<br/><em>sentido.</em></div>
+<span class="art-note" data-i18n="orbe.note">Cargo. Localização. Preferências.</span>
+</div>
+<div class="project-foot">
+<span data-i18n="orbe.discipline">01 / Encontrar oportunidades</span><button aria-label="Entender a busca de vagas" data-case="orbe" data-i18n="case.explore" data-i18n-aria-label="orbe.explore">Entender esta etapa <span>↗</span></button>
+</div>
+</article>
+<article class="project project-nexo" data-project="1">
+<div class="project-meta">
+<span data-i18n="stage.prepare">perfil✳</span><span data-i18n="nexo.category">PERFIL &amp; CURRÍCULO</span>
+</div>
+<div class="nexo-art">
+<div class="nexo-head" data-i18n="nexo.title">Seu percurso<br/><em>conta.</em></div>
+<div aria-hidden="true" class="orbit-system">
+<div class="orbit o1"></div>
+<div class="orbit o2"></div>
+<div class="orbit o3"></div>
+<div class="orbit-core">a.</div>
+<div class="orbit-satellite">↗</div>
+</div>
+<div class="nexo-chip" data-i18n="nexo.note">Seus dados, no lugar certo.</div>
+</div>
+<div class="project-foot">
+<span data-i18n="nexo.discipline">02 / Preparar candidaturas</span><button aria-label="Entender a preparação" data-case="nexo" data-i18n="case.explore" data-i18n-aria-label="nexo.explore">Entender esta etapa <span>↗</span></button>
+</div>
+</article>
+<article class="project project-essencia" data-project="2">
+<div class="project-meta">
+<span data-i18n="stage.follow">histórico.</span><span data-i18n="essencia.category">ACOMPANHAMENTO</span>
+</div>
+<div class="essencia-art">
+<div class="essencia-title" data-i18n="essencia.title">Cada passo<br/><em>à vista.</em></div>
+<div aria-hidden="true" class="vase">
+<div class="vase-neck"></div>
+<div class="vase-body"></div>
+<div class="vase-shadow"></div>
+<div class="stem s1"></div>
+<div class="stem s2"></div>
+</div>
+<span class="essencia-note" data-i18n="essencia.note">Pendências. Envios. Recibos.</span>
+</div>
+<div class="project-foot">
+<span data-i18n="essencia.discipline">03 / Acompanhar cada etapa</span><button aria-label="Entender o acompanhamento" data-case="essencia" data-i18n="case.explore" data-i18n-aria-label="essencia.explore">Entender esta etapa <span>↗</span></button>
+</div>
+</article>
+</div>
+<div aria-hidden="true" class="stage-progress wrap">
+<span class="active"></span><span></span><span></span>
+</div>
+</div>
+</div>
+</section>
+<section class="approach wrap" id="processo">
+<div class="section-tag">
+<span data-i18n="process.tag">03 / COMO FUNCIONA</span><span data-i18n="process.tagline">DO SEU PERFIL À CANDIDATURA.</span>
+</div>
+<div class="approach-head">
+<h2 data-i18n="process.title">Menos trabalho repetido.<br/><em>Mais foco</em> no próximo passo.</h2>
+<p data-i18n="process.note">Uma ferramenta para apoiar sua busca,<br/>com visibilidade sobre o processo.</p>
+</div>
+<div class="approach-rows">
+<article>
+<span>01</span>
+<h3 data-i18n="process.step1">Comece pelo seu perfil.</h3>
+<p data-i18n="process.body1">Adicione o currículo e configure cargo, localização e preferências.</p>
+<b aria-hidden="true">↗</b>
+</article>
+<article>
+<span>02</span>
+<h3 data-i18n="process.step2">Encontre vagas compatíveis.</h3>
+<p data-i18n="process.body2">Revise as vagas encontradas e acompanhe a preparação dos formulários.</p>
+<b aria-hidden="true">↗</b>
+</article>
+<article>
+<span>03</span>
+<h3 data-i18n="process.step3">Acompanhe cada etapa.</h3>
+<p data-i18n="process.body3">Veja o que foi confirmado e o que ainda precisa da sua atenção.</p>
+<b aria-hidden="true">↗</b>
+</article>
+</div>
+</section>
+<section class="contact wrap" id="contato">
+<div class="section-tag">
+<span data-i18n="contact.tag">04 / O PRÓXIMO PASSO</span><span data-i18n="contact.tagline">SETE DIAS PARA EXPLORAR.</span>
+</div>
+<div class="contact-invite">
+<h2 class="contact-title" data-i18n="contact.title">Vamos colocar sua busca<br/><em>em movimento?</em><span aria-hidden="true" class="contact-arrow">↗</span></h2>
+<a class="contact-cta" data-i18n="start" href="#download">Ver downloads <span aria-hidden="true">↗</span></a>
+</div>
+<div class="contact-bottom">
+<p data-i18n="contact.note">Experimente grátis por 7 dias.<br/>Sem cartão.</p>
+<span data-i18n="contact.demo">SOFTWARE PARA SUA BUSCA<br/>O TESTE NÃO GERA COBRANÇA AUTOMÁTICA.</span>
+</div>
+<div class="auto-downloads" id="download">
+<div class="auto-download-heading"><span data-i18n="download.tag">TESTE GRÁTIS POR 7 DIAS</span><a data-i18n="download.plans" href="planos.html">Ver plano ↗</a></div>
+<div class="auto-download-grid">
+<article data-platform-card="windows"><span class="auto-platform">WINDOWS</span><h3 data-i18n="download.windows.title">Para o seu PC.</h3><p data-i18n="download.windows.note">Windows 10 ou 11 · 64 bits</p><a data-download-platform="windows" data-i18n="download.windows.button" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.11.197-windows-beta/CV-Auto-Windows-Setup.exe">Baixar para Windows ↗</a><p class="auto-fine" data-platform-status="windows">Versão de teste</p><p class="auto-fine" data-i18n="download.windows.warning">O instalador beta pode exibir um aviso do SmartScreen.</p></article>
+<article data-platform-card="macos"><span class="auto-platform">MACOS</span><h3 data-i18n="download.macos.title">Para o seu Mac.</h3><p data-i18n="download.macos.note">Apple Silicon · macOS 13 ou posterior</p><a data-download-platform="macos" data-i18n="download.macos.button" href="https://github.com/SouzaEu/cv-auto-downloads/releases/download/v2026.11.11.197/CV-Auto-macos-arm64.dmg">Baixar para Mac ↗</a></article>
+</div>
+</div></section>
+</main>
+<footer class="footer wrap">
+<a class="logo" href="#inicio">auto apply<span>®</span></a><span data-i18n="footer.tagline">Sua busca, em movimento.</span>
+<div>
+<span data-i18n="footer.concept">Auto Apply · 2026</span><a data-i18n="footer.credits" href="CREDITOS.md">Créditos &amp; código aberto ↗</a>
+<a data-i18n="footer.plans" href="planos.html">Planos ↗</a></div>
+</footer>
+<dialog aria-labelledby="case-title" class="dialog case-dialog" id="case-dialog">
+<button aria-label="Fechar" class="dialog-close" data-i18n-aria-label="close">×</button>
+<div class="eyebrow" data-i18n="case.tag">ETAPA DO AUTO APPLY</div>
+<h2 id="case-title"></h2>
+<p id="case-description"></p>
+<dl>
+<dt data-i18n="case.direction">O que acontece</dt>
+<dd id="case-direction"></dd>
+<dt data-i18n="case.intent">Sua revisão</dt>
+<dd id="case-intent"></dd>
+</dl>
+<p class="small" data-i18n="case.note">As ilustrações são conceituais. Os resultados reais dependem de cada vaga e portal.</p>
+<button class="button" data-i18n="case.next" id="case-next">Ver downloads ↗</button>
+</dialog>
+<noscript><div class="nojs" data-i18n="nojs">Você pode ler esta página sem JavaScript. Ative-o para usar o menu, idiomas, 3D e rolagem interativa.</div></noscript>
+<script src="scene.js?v=200" type="module"></script>
+<script src="app.js?v=200" type="module"></script>
 </body>
 </html>
