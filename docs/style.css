@@ -84,12 +84,25 @@ summary:focus-visible {
   z-index: 5;
 }
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
   font-size: 38px;
   line-height: 1;
   font-weight: 650;
   letter-spacing: -2.4px;
 }
-.logo span {
+.logo img {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #f2f1ec;
+  object-fit: contain;
+  flex: none;
+}
+.logo sup {
   font: 12px Arial;
   vertical-align: top;
   margin-left: 4px;
@@ -849,6 +862,10 @@ em {
   color: var(--ink);
   font-size: 30px;
 }
+.footer .logo img {
+  width: 34px;
+  height: 34px;
+}
 .footer > div {
   display: flex;
   gap: 30px;
@@ -1086,6 +1103,10 @@ em {
   }
   .logo {
     font-size: 32px;
+  }
+  .logo img {
+    width: 34px;
+    height: 34px;
   }
   .wrap {
     padding-left: 6vw;
@@ -2264,6 +2285,20 @@ html:not(.js) #motion {
     font-size: clamp(32px, 8.5vw, 42px);
   }
 }
+@media (max-width: 440px) {
+  .logo {
+    font-size: 25px;
+    gap: 5px;
+  }
+  .logo img {
+    width: 30px;
+    height: 30px;
+  }
+  .logo sup {
+    font-size: 9px;
+    margin-left: 2px;
+  }
+}
 @media (max-width: 380px) {
   .header {
     padding-left: 5vw;
@@ -2272,9 +2307,6 @@ html:not(.js) #motion {
   }
   .header-actions {
     gap: 8px;
-  }
-  .logo {
-    font-size: 30px;
   }
   .menu-button {
     padding: 10px 12px;
