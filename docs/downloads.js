@@ -53,7 +53,7 @@
           : "";
       });
       document.querySelectorAll(`[data-platform-card="${name}"]`).forEach(card => {
-        card.hidden = platform !== null && name !== platform;
+        card.hidden = false;
         card.classList.toggle("featured", name === (platform || "windows"));
       });
     }

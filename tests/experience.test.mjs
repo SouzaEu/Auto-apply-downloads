@@ -5,6 +5,7 @@ import { translations } from '../docs/translations.js';
 
 const home = readFileSync(new URL('../docs/index.html', import.meta.url), 'utf8');
 const plans = readFileSync(new URL('../docs/planos.html', import.meta.url), 'utf8');
+const compatibility = readFileSync(new URL('../docs/compatibilidade.html', import.meta.url), 'utf8');
 
 test('the original interactive scroll and accessible fallback remain wired', () => {
   assert.match(home, /src="vendor\/gsap\.min\.js"/);
@@ -19,7 +20,7 @@ test('the original interactive scroll and accessible fallback remain wired', () 
 });
 
 test('Portuguese, English and Spanish cover every visible translatable field', () => {
-  const keys = [...(home + plans).matchAll(/data-i18n(?:-aria-label|-placeholder)?="([^"]+)"/g)]
+  const keys = [...(home + plans + compatibility).matchAll(/data-i18n(?:-aria-label|-placeholder)?="([^"]+)"/g)]
     .map((match) => match[1]);
   const expected = Object.keys(translations['pt-BR']).sort();
   for (const [language, dictionary] of Object.entries(translations)) {
@@ -27,5 +28,12 @@ test('Portuguese, English and Spanish cover every visible translatable field', (
     for (const key of keys) assert.ok(dictionary[key]?.trim(), `${language}: ${key}`);
     assert.match(dictionary['meta.title'], /Auto Apply/);
     assert.match(dictionary['plan.meta.title'], /Auto Apply/);
+    assert.match(dictionary['compat.meta.title'], /Auto Apply/);
+    for (const scenario of ['experience', 'education', 'authorization']) {
+      assert.ok(dictionary[`demo.question.${scenario}`]?.trim(), `${language}: demo.question.${scenario}`);
+      for (const step of ['recognition', 'interpretation', 'source', 'review', 'outcome']) {
+        assert.ok(dictionary[`demo.${scenario}.${step}`]?.trim(), `${language}: demo.${scenario}.${step}`);
+      }
+    }
   }
 });

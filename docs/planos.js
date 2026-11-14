@@ -7,10 +7,12 @@ function syncTheme() {
   document.querySelector('meta[name="theme-color"]').content = dark ? '#191b18' : '#f2f1ec';
 }
 function syncMeta() {
-  document.title = t('plan.meta.title');
-  document.querySelector('meta[name="description"]').content = t('plan.meta.description');
-  document.querySelector('meta[property="og:title"]').content = t('plan.meta.title');
-  document.querySelector('meta[property="og:description"]').content = t('plan.meta.description');
+  const prefix = document.body.dataset.page === 'compat' ? 'compat' : 'plan';
+  document.title = t(`${prefix}.meta.title`);
+  document.querySelector('meta[name="description"]').content = t(`${prefix}.meta.description`);
+  document.querySelector('meta[property="og:title"]').content = t(`${prefix}.meta.title`);
+  document.querySelector('meta[property="og:description"]').content = t(`${prefix}.meta.description`);
+  document.querySelector('meta[property="og:locale"]').content = { 'pt-BR':'pt_BR', en:'en_US', es:'es_ES' }[getLanguage()];
 }
 function syncLinks() {
   document.querySelectorAll('a[href]').forEach(link => {
