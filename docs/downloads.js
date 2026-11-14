@@ -6,13 +6,13 @@
     windows: {
       label: "Baixar para Windows",
       asset: "CV-Auto-Windows-Setup.exe",
-      tag: "v2026.11.13.208-windows-beta",
+      tag: "v2026.11.14.209-windows-beta",
       prerelease: true,
     },
     macos: {
       label: "Baixar para Mac",
       asset: "CV-Auto-macos-arm64.dmg",
-      tag: "v2026.11.13.208",
+      tag: "v2026.11.14.209",
       prerelease: false,
     },
   };
