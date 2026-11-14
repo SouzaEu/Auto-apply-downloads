@@ -1,14 +1,9 @@
-# Auto Apply — downloads oficiais
+# Auto Apply — site oficial
 
-[Baixar para Windows — versão de teste](https://github.com/SouzaEu/Auto-apply-downloads/releases/download/v2026.11.14.209-windows-beta/CV-Auto-Windows-Setup.exe)
+[Página do produto](https://souzaeu.github.io/Auto-apply-downloads/) · [Compatibilidade](https://souzaeu.github.io/Auto-apply-downloads/compatibilidade.html) · [Planos](https://souzaeu.github.io/Auto-apply-downloads/planos.html) · [Versões e instaladores](https://github.com/SouzaEu/Auto-apply-downloads/releases)
 
-[Baixar para Mac](https://github.com/SouzaEu/Auto-apply-downloads/releases/download/v2026.11.14.209/CV-Auto-macos-arm64.dmg)
+O site apresenta o motor de interpretação de formulários, uma demonstração editorial sem envio e a experiência de busca, preparação e acompanhamento. Os instaladores disponíveis são selecionados entre os lançamentos oficiais com checksum; os links de reserva apontam para a versão 209.
 
-[Página do Auto Apply](https://souzaeu.github.io/Auto-apply-downloads/)
+O teste dura sete dias a partir da ativação no aplicativo, sem cartão e sem cobrança automática. O preço anunciado é R$ 49,90 por 30 dias, mas compras ainda estão indisponíveis. O instalador Windows segue em beta e ainda não foi validado em Windows real.
 
-Teste grátis de 7 dias por computador e ativação por código de licença.
-
-A versão Windows está publicada para avaliação e aguarda teste em Windows real. O instalador beta ainda não tem assinatura Authenticode e pode ser sinalizado pelo SmartScreen.
-Os checksums e os detalhes de cada versão estão nos lançamentos.
-
-Build 209: Sentinel, identidade visual n7 e limite seguro de inspeção no piloto de validação.
+Para testar localmente: `python3 -m http.server --directory docs 8767` e `node --test tests/*.test.mjs`.
