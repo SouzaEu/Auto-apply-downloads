@@ -1,0 +1,69 @@
+name: Windows 209 installer smoke
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  installed-binary:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Download and verify public installer
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = 'https://github.com/SouzaEu/Auto-apply-downloads/releases/download/v2026.11.14.209-windows-beta'
+          $setup = Join-Path $env:RUNNER_TEMP 'CV-Auto-Windows-Setup.exe'
+          $sidecar = "$setup.sha256"
+          Invoke-WebRequest "$base/CV-Auto-Windows-Setup.exe" -OutFile $setup
+          Invoke-WebRequest "$base/CV-Auto-Windows-Setup.exe.sha256" -OutFile $sidecar
+          $expected = (Get-Content $sidecar -Raw).Trim()
+          if ($expected -notmatch '^([0-9a-f]{64})  CV-Auto-Windows-Setup\.exe$') { throw 'Invalid checksum sidecar' }
+          $actual = (Get-FileHash -Algorithm SHA256 $setup).Hash.ToLowerInvariant()
+          if ($actual -ne $Matches[1]) { throw 'Installer checksum mismatch' }
+          "AUTOAPPLY_SETUP=$setup" >> $env:GITHUB_ENV
+
+      - name: Scan installer with Microsoft Defender
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $status = Get-MpComputerStatus
+          if ($status.AMRunningMode -ne 'Normal' -or -not $status.AntivirusEnabled -or -not $status.RealTimeProtectionEnabled) {
+            throw 'Microsoft Defender real-time protection is unavailable'
+          }
+          $platform = Join-Path $env:ProgramData 'Microsoft/Windows Defender/Platform'
+          $scanner = Get-ChildItem $platform -Directory -ErrorAction SilentlyContinue |
+            Where-Object { ($_.Name -split '-', 2)[0] -eq $status.AMProductVersion } |
+            ForEach-Object { Join-Path $_.FullName 'MpCmdRun.exe' } |
+            Where-Object { Test-Path $_ } |
+            Select-Object -First 1
+          if (-not $scanner) { $scanner = Join-Path $env:ProgramFiles 'Windows Defender/MpCmdRun.exe' }
+          if (-not (Test-Path $scanner)) { throw 'Microsoft Defender scanner is unavailable' }
+          & $scanner -Scan -ScanType 3 -File $env:AUTOAPPLY_SETUP -DisableRemediation
+          if ($LASTEXITCODE -ne 0) { throw "Defender scan failed: $LASTEXITCODE" }
+          "AUTOAPPLY_SCANNER=$scanner" >> $env:GITHUB_ENV
+
+      - name: Install and check Windows application
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $install = Join-Path $env:RUNNER_TEMP 'cv-auto-installed'
+          $process = Start-Process $env:AUTOAPPLY_SETUP -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', "/DIR=$install" -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Installation failed: $($process.ExitCode)" }
+          $executable = Join-Path $install 'AutoApply.exe'
+          if (-not (Test-Path $executable)) { throw 'Installed executable missing' }
+          $env:AUTOAPPLY_DATA_DIR = Join-Path $env:RUNNER_TEMP 'cv-auto-check'
+          $process = Start-Process $executable -ArgumentList '--self-check-windows' -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Installed app check failed: $($process.ExitCode)" }
+          $report = Get-Content (Join-Path $env:AUTOAPPLY_DATA_DIR 'self-check.json') -Raw | ConvertFrom-Json
+          if (-not $report.passed) { throw 'Installed app self-check did not pass' }
+          Write-Host 'Installed app self-check passed'
+          & $env:AUTOAPPLY_SCANNER -Scan -ScanType 3 -File $install -DisableRemediation
+          if ($LASTEXITCODE -ne 0) { throw "Installed app Defender scan failed: $LASTEXITCODE" }
+          $uninstaller = Join-Path $install 'unins000.exe'
+          $process = Start-Process $uninstaller -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART' -Wait -PassThru
+          if ($process.ExitCode -ne 0) { throw "Uninstall failed: $($process.ExitCode)" }
+          if (-not (Test-Path (Join-Path $env:AUTOAPPLY_DATA_DIR 'self-check.json'))) { throw 'Uninstall removed external application data' }
