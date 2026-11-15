@@ -1,4 +1,4 @@
-import { getLanguage, setLanguage, t } from './i18n.js';
+import { getLanguage, setLanguage, t } from './i18n.js?v=215';
 setLanguage(getLanguage());
 const theme = document.querySelector('.theme-toggle');
 function syncTheme() {
@@ -7,7 +7,7 @@ function syncTheme() {
   document.querySelector('meta[name="theme-color"]').content = dark ? '#191b18' : '#f2f1ec';
 }
 function syncMeta() {
-  const prefix = document.body.dataset.page === 'compat' ? 'compat' : 'plan';
+  const prefix = ({ compat: 'compat', buy: 'buy', payment: 'payment' })[document.body.dataset.page] || 'plan';
   document.title = t(`${prefix}.meta.title`);
   document.querySelector('meta[name="description"]').content = t(`${prefix}.meta.description`);
   document.querySelector('meta[property="og:title"]').content = t(`${prefix}.meta.title`);

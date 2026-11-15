@@ -20,7 +20,7 @@ test('the original interactive scroll and accessible fallback remain wired', () 
 });
 
 test('Portuguese, English and Spanish cover every visible translatable field', () => {
-  const keys = [...(home + plans + compatibility).matchAll(/data-i18n(?:-aria-label|-placeholder)?="([^"]+)"/g)]
+  const keys = [...(home + plans + compatibility + readFileSync(new URL('../docs/comprar.html', import.meta.url), 'utf8') + readFileSync(new URL('../docs/pagamento.html', import.meta.url), 'utf8')).matchAll(/data-i18n(?:-aria-label|-placeholder)?="([^"]+)"/g)]
     .map((match) => match[1]);
   const expected = Object.keys(translations['pt-BR']).sort();
   for (const [language, dictionary] of Object.entries(translations)) {

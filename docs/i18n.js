@@ -1,4 +1,4 @@
-import { translations } from './translations.js';
+import { translations } from './translations.js?v=215';
 
 export const languages = Object.keys(translations);
 let language = languages.includes(document.documentElement.lang)
