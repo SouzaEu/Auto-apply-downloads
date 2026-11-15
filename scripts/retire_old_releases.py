@@ -20,6 +20,12 @@ def api(path):
     return json.loads(command("gh", "api", f"repos/{REPO}/{path}"))
 
 
+def all_releases():
+    pages = json.loads(command("gh", "api", "--paginate", "--slurp",
+                               f"repos/{REPO}/releases?per_page=100"))
+    return [release for page in pages for release in page]
+
+
 def pinned_tags(script):
     found = re.findall(r'tag: "(v\d{4}\.\d{1,2}\.\d{1,2}\.\d{1,6}(?:-windows-beta)?)"', script)
     if len(found) != 2 or len(set(found)) != 2:
@@ -74,7 +80,7 @@ def main():
     html = (ROOT / "docs/index.html").read_text()
     if any(tag not in html for tag in pinned):
         raise ValueError("HTML fallback differs from downloads.js")
-    old = retirement_plan(api("releases?per_page=100"), pinned)
+    old = retirement_plan(all_releases(), pinned)
     if args.apply:
         for tag in old:
             subprocess.run(["gh", "release", "edit", tag, "-R", REPO, "--draft"],
