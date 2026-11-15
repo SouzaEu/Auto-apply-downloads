@@ -1,4 +1,4 @@
-name: Windows 209 installer smoke
+name: Current Windows installer smoke
 
 on:
   workflow_dispatch:
@@ -17,7 +17,17 @@ jobs:
       - name: Download and verify public installer
         run: |
           $ErrorActionPreference = 'Stop'
-          $base = 'https://github.com/SouzaEu/Auto-apply-downloads/releases/download/v2026.11.14.209-windows-beta'
+          $releases = Invoke-RestMethod 'https://api.github.com/repos/SouzaEu/Auto-apply-downloads/releases?per_page=100'
+          $current = $releases |
+            Where-Object { -not $_.draft -and $_.tag_name -match '^v\d{4}\.\d{1,2}\.\d{1,2}\.\d+-windows-beta$' } |
+            Sort-Object { [version]($_.tag_name -replace '^v|\-windows-beta$', '') } -Descending |
+            Select-Object -First 1
+          if (-not $current) { throw 'No public Windows beta release' }
+          $assetNames = @($current.assets | Where-Object { $_.state -eq 'uploaded' } | ForEach-Object { $_.name })
+          if ('CV-Auto-Windows-Setup.exe' -notin $assetNames -or 'CV-Auto-Windows-Setup.exe.sha256' -notin $assetNames) {
+            throw 'Current Windows release is incomplete'
+          }
+          $base = "https://github.com/SouzaEu/Auto-apply-downloads/releases/download/$($current.tag_name)"
           $setup = Join-Path $env:RUNNER_TEMP 'CV-Auto-Windows-Setup.exe'
           $sidecar = "$setup.sha256"
           Invoke-WebRequest "$base/CV-Auto-Windows-Setup.exe" -OutFile $setup
