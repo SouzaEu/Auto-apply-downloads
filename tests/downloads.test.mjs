@@ -72,7 +72,7 @@ test("selects each platform independently, including the published Windows beta"
     release("v2026.11.14.210", "windows"),
   ]);
   assert.match(result.auto.href, /211-windows-beta\/CV-Auto-Windows-Setup.exe$/);
-  assert.match(result.macos.href, /209\/CV-Auto-macos-arm64.dmg$/);
+  assert.match(result.macos.href, /210\/CV-Auto-macos-arm64.dmg$/);
   assert.equal(result.status.hidden, false);
 });
 
@@ -85,7 +85,7 @@ test("ignores drafts, incomplete releases, foreign URLs and older versions", asy
   const result = await page({ platform: "Win32" }, [
     draft, incomplete, foreign, release("v2026.11.8.180", "windows"),
   ]);
-  assert.match(result.auto.href, /209-windows-beta/);
+  assert.match(result.auto.href, /210-windows-beta/);
 });
 
 test("stable publication replaces the beta and failed lookups preserve usable links", async () => {
