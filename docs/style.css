@@ -98,7 +98,7 @@ summary:focus-visible {
   height: 40px;
   padding: 4px;
   border-radius: 10px;
-  background: #f2f1ec;
+  background: transparent;
   object-fit: contain;
   flex: none;
 }
@@ -491,7 +491,7 @@ em {
   margin: 0 26px;
 }
 .orbe-art {
-  background: #bdb3a4;
+  background: repeating-linear-gradient(0deg, transparent 0 31px, #2221 32px 33px), linear-gradient(135deg, #bdb3a4, #ddd2c1);
 }
 .arch {
   position: absolute;
@@ -556,7 +556,7 @@ em {
   color: #5b45c4;
 }
 .nexo-art {
-  background: #323277;
+  background: repeating-linear-gradient(90deg, transparent 0 48px, #fff1 49px 50px), linear-gradient(135deg, #323277, #5452a1);
   color: #f0f0ff;
 }
 .nexo-head {
@@ -637,7 +637,7 @@ em {
   background: #d2d7bd;
 }
 .essencia-art {
-  background: #a9b497;
+  background: repeating-linear-gradient(0deg, transparent 0 39px, #26331b18 40px 41px), linear-gradient(135deg, #a9b497, #d0d8bf);
 }
 .essencia-title {
   position: absolute;
