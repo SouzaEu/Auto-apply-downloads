@@ -1,5 +1,5 @@
 // Editorial copy is trusted HTML. Never interpolate visitor input into it.
-import { planCopy } from './plan-copy.js?v=215';
+import { planCopy } from './plan-copy.js?v=220';
 export const translations = {
   'pt-BR': {
     language: 'Idioma',

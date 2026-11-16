@@ -21,9 +21,11 @@ export function paymentState(result) {
   }
   return ['pending', 'failed', 'cancelled', 'refunded', 'review'].includes(result?.status) ? result.status : 'error';
 }
-export function readyToBuy(config, plan) {
+export function readyToBuy(config, plan, { environment = 'production' } = {}) {
   const price = config?.prices?.[plan];
-  return config?.sales_enabled === true && config?.legal_ready === true &&
+  return ['production', 'sandbox'].includes(environment) &&
+    (config?.payment_environment || 'production') === environment &&
+    config?.sales_enabled === true && (environment === 'sandbox' || config?.legal_ready === true) &&
     price?.amount_cents === offers[plan].amount_cents && price?.days === offers[plan].days &&
     price?.currency === 'BRL';
 }

@@ -10,7 +10,7 @@
 - FAQ de IA com chave própria e custos externos, ausência de garantia de
   entrevista/emprego, portais suportados, Windows beta, atualização, início
   do acesso, dispositivos, renovação, dados após vencimento e reembolso.
-- Compras em preparação: campos e botão desativados e nenhum e-mail coletado.
+- Demonstração aberta: formulário navegável, e-mail de exemplo não salvo/enviado e nenhum pedido remoto criado.
 - Retorno de pagamento não confia em `status=approved` ou código na URL.
 - Configuração pública de API vazia e bloqueio independente no frontend.
 
@@ -47,3 +47,19 @@ do vendedor, canais de atendimento, retenção e revisão responsável. Não for
 inventados dados legais ou canais de suporte. Permanecem pendentes os gates
 A/B/C do pacote, inclusive testes de Windows físico, recibos reais de portais,
 histórico/exportação após expiração e segurança/concorrência no runtime real.
+
+
+## Atualização: fluxo visual aberto
+
+A pedido do usuário, todas as etapas visuais foram abertas publicamente.
+`checkout.html` permite alternar Pix/cartão; `pagamento.html` mostra os sete
+estados; `acesso.html` permite simular ativação, troca de computador,
+recuperação e solicitação de reembolso. Códigos DEMO nunca são aceitos pelo
+validador real de licenças. Os links mantêm plano/idioma, sem incluir e-mail.
+Termos e privacidade são prévias explícitas; a identificação de vendedor e
+os canais reais continuam pendentes para cobrança real.
+
+O backend existente agora inclui preparação de sandbox isolado, configuração
+local gerada por script e guia de segredos/webhook. Nenhuma conta, banco remoto,
+credencial ou transação foi criada nesta etapa. Há distinção explícita de
+ambiente no contrato da API; sandbox não afirma aprovação jurídica/comercial.

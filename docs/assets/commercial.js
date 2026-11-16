@@ -1,10 +1,12 @@
+import { startPreview } from './commercial-preview.js?v=220';
 import { commercialConfig } from './commercial-config.js';
 import { offers, selectPlan, safeCheckoutUrl, validPurchase, paymentState, readyToBuy } from './commercial-core.js';
-import { getLanguage, t } from '../i18n.js?v=215';
+import { getLanguage, t } from '../i18n.js?v=220';
 const $ = id => document.getElementById(id);
 const sessionKey = 'auto_apply_purchase';
 const api = commercialConfig.apiBase.replace(/\/$/, '');
-const enabled = commercialConfig.salesEnabled === true && /^https:\/\//.test(api);
+const sandbox = commercialConfig.paymentEnvironment === 'sandbox';
+const enabled = ['sandbox', 'production'].includes(commercialConfig.paymentEnvironment) && commercialConfig.salesEnabled === true && /^https:\/\//.test(api);
 let messageKey = '';
 function message(key, id) {
   messageKey = key;
@@ -38,12 +40,14 @@ function checkout() {
   if (!enabled) return;
   const form = $('checkout-form'), fieldset = form.querySelector('fieldset'), button = $('pay-button');
   request('/api/config').then(config => {
-    if (!readyToBuy(config, plan)) return;
+    if (!readyToBuy(config, plan, { environment: commercialConfig.paymentEnvironment })) return;
     // Final terms/privacy links and checkout wording must be installed before
     // enabling the client launch flag. This guard is intentionally independent.
-    if (!document.querySelector('a[data-purchase-terms]') || !document.querySelector('a[data-purchase-privacy]')) return;
+    if (!sandbox && (!document.querySelector('a[data-purchase-terms]') || !document.querySelector('a[data-purchase-privacy]'))) return;
     fieldset.disabled = false;
     button.disabled = false;
+    button.dataset.i18n = sandbox ? 'sandbox.pay' : 'buy.pay';
+    button.textContent = t(button.dataset.i18n);
   }).catch(() => message('buy.blocked', 'checkout-msg'));
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -106,5 +110,18 @@ function payment() {
   window.addEventListener('pagehide', () => { stopped = true; clearTimeout(timer); });
   refresh();
 }
-if (document.body.dataset.page === 'buy') checkout();
-if (document.body.dataset.page === 'payment') payment();
+if (commercialConfig.previewEnabled === true && !enabled) {
+  startPreview();
+} else {
+  document.querySelectorAll('.purchase-steps,#fill-demo-email').forEach(el => el.hidden = true);
+  document.querySelectorAll('.preview-banner').forEach(el => el.hidden = !sandbox);
+  const replaceCopy = (selector, key) => { document.querySelectorAll(selector).forEach(el => { el.dataset.i18n = key; el.textContent = t(key); }); };
+  replaceCopy('.preview-banner strong', 'sandbox.badge');
+  replaceCopy('.preview-banner p', 'sandbox.notice');
+  replaceCopy('#sales-notice', sandbox ? 'sandbox.badge' : 'buy.meta.title');
+  replaceCopy('[data-i18n="preview.emailnote"]', sandbox ? 'sandbox.notice' : 'buy.readyNotice');
+  replaceCopy('[data-i18n="preview.terms"]', sandbox ? 'sandbox.terms' : 'buy.terms');
+  replaceCopy('#license-container h2', 'payment.code');
+  if (document.body.dataset.page === 'buy') checkout();
+  if (document.body.dataset.page === 'payment') payment();
+}

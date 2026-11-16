@@ -1,3 +1,3 @@
-// Public configuration only. Never put provider tokens or signing keys here.
-// Enable only after the product, sandbox and legal launch gates are complete.
-export const commercialConfig = Object.freeze({ salesEnabled: false, apiBase: '' });
+// Public settings only. No tokens or signing secrets belong here.
+// Visual preview is open; real payment API wiring stays independent.
+export const commercialConfig = Object.freeze({ previewEnabled: true, paymentEnvironment: 'preview', salesEnabled: false, apiBase: '' });
