@@ -50,7 +50,7 @@ export function startPreview() {
     $('fill-demo-email').hidden = false;
     const fill = () => { $('email').value = 'demo@example.test'; $('email2').value = 'demo@example.test'; $('email2').setCustomValidity(''); };
     $('fill-demo-email').addEventListener('click', fill);
-    $('email2').addEventListener('input', () => $('email2').setCustomValidity(''));
+    for (const id of ['email', 'email2']) $(id).addEventListener('input', () => $('email2').setCustomValidity(''));
     form.addEventListener('submit', event => {
       event.preventDefault();
       if (!form.reportValidity()) return;

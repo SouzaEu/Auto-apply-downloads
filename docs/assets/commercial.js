@@ -70,7 +70,7 @@ function checkout() {
       location.assign(order.checkout_url);
     } catch { message('payment.error', 'checkout-msg'); button.disabled = false; }
   });
-  $('email2').addEventListener('input', () => $('email2').setCustomValidity(''));
+  for (const id of ['email', 'email2']) $(id).addEventListener('input', () => $('email2').setCustomValidity(''));
 }
 function payment() {
   const status = $('payment-status'), retry = $('retry-payment');
