@@ -131,7 +131,7 @@ $$('dialog').forEach((dialog) => {
   const close = dialog.querySelector('.dialog-close');
   if (close) listen(close, 'click', () => closeDialog(dialog));
 });
-listen(matchMedia('(min-width: 801px)'), 'change', (event) => {
+listen(matchMedia('(min-width: 1101px)'), 'change', (event) => {
   if (event.matches) closeDialog(mobile);
 });
 // A single native smooth scroll, followed by focus without a second scroll.
