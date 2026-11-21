@@ -37,6 +37,8 @@ test('the plans page advertises both account subscriptions without legacy checko
   assert.match(plans, /freshpike132\.chatgpt\.site\/conta/);
   assert.match(plans, /R\$ 34,90/);
   assert.match(plans, /90 DIAS/);
+  assert.match(plans, /name="description" content="[^"]*R\$ 19,90[^"]*R\$ 34,90/);
+  assert.match(plans, /property="og:description" content="[^"]*R\$ 19,90[^"]*R\$ 34,90/);
   assert.doesNotMatch(plans, /R\$ 14,90|plano=30|plano=90/);
 });
 
