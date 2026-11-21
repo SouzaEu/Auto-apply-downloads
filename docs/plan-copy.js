@@ -514,3 +514,47 @@ export const planCopy = {
     "preview.confirm": "Simular confirmación"
   }
 };
+
+Object.assign(planCopy['pt-BR'], {
+  'plan.title': 'Uma conta.<br><em>Um plano.</em>',
+  'plan.intro': 'Use o Auto Apply por R$ 19,90 ao mês. A assinatura fica ligada à sua conta, não a um código solto.',
+  'plan.tagline': 'SIMPLES E PREVISÍVEL.', 'plan.label': 'ASSINATURA MENSAL',
+  'plan.duration30': 'Acesso enquanto a assinatura estiver ativa.', 'plan.period': '/ mês',
+  'plan.choose30': 'Acessar minha conta ↗',
+  'plan.payment': 'Renovação mensal automática. Cancele quando quiser pela área da conta.',
+  'plan.includes': 'Todos os recursos · atualizações incluídas · um dispositivo ativo',
+  'plan.pending': 'Ambiente comercial em preparação',
+  'plan.note': 'A área da conta já está disponível. A cobrança continuará bloqueada até a validação do Mercado Pago em ambiente de teste.',
+  'plan.how.one': 'Entre na área da conta e gerencie sua assinatura.',
+  'plan.how.two': 'Após a confirmação do pagamento pelo servidor, o acesso é associado à sua conta.',
+  'plan.how.three': 'No aplicativo, informe o código temporário de pareamento e aprove o computador na sua conta.',
+  'plan.how.note': 'Um computador pode ficar ativo por vez. Ao aprovar outro, o anterior é desconectado.',
+  'plan.faq1.q': 'Preciso guardar um código de licença?',
+  'plan.faq1.a': 'Não. Novas assinaturas ficam vinculadas à conta. Códigos antigos existem apenas para compatibilidade.',
+  'plan.faq3.a': 'A área da conta está no ar, mas a cobrança real ainda está bloqueada até concluirmos o teste do Mercado Pago.',
+  'plan.faq5.q': 'Como cancelo?',
+  'plan.faq5.a': 'Pela área da conta. O cancelamento impede novas cobranças e o período já pago permanece válido até o vencimento.',
+  'plan.activation.q': 'Quantos computadores posso usar?',
+  'plan.activation.a': 'Um computador ativo por vez. Você pode trocar pela área da conta; aprovar o novo desativa o anterior.',
+  'plan.meta.description': 'Auto Apply por R$ 19,90 ao mês. Uma conta, um dispositivo ativo e cancelamento pela área da conta.'
+});
+Object.assign(planCopy.en, {
+  'plan.title': 'One account.<br><em>One plan.</em>', 'plan.intro': 'Use Auto Apply for R$ 19.90 per month. Your subscription belongs to your account, not a loose code.',
+  'plan.tagline': 'SIMPLE AND PREDICTABLE.', 'plan.label': 'MONTHLY SUBSCRIPTION', 'plan.duration30': 'Access while your subscription is active.', 'plan.period': '/ month',
+  'plan.choose30': 'Open my account ↗', 'plan.payment': 'Automatic monthly renewal. Cancel anytime from your account.', 'plan.includes': 'All features · updates included · one active device',
+  'plan.pending': 'Commercial environment in preparation', 'plan.note': 'The account area is available. Billing remains blocked until Mercado Pago sandbox validation is complete.',
+  'plan.how.one': 'Sign in to manage your subscription.', 'plan.how.two': 'After server-side payment confirmation, access is linked to your account.', 'plan.how.three': 'Enter the temporary pairing code in the app and approve the computer in your account.',
+  'plan.how.note': 'One computer can be active at a time. Approving another disconnects the previous one.', 'plan.faq1.q': 'Do I need to keep a license code?', 'plan.faq1.a': 'No. New subscriptions are linked to your account. Old codes remain only for compatibility.',
+  'plan.faq3.a': 'The account area is live, but real billing is blocked until Mercado Pago testing is complete.', 'plan.faq5.q': 'How do I cancel?', 'plan.faq5.a': 'From your account. Cancellation stops future charges and keeps paid access until its recorded end date.',
+  'plan.activation.q': 'How many computers can I use?', 'plan.activation.a': 'One active computer at a time. Approving a new one disconnects the previous one.', 'plan.meta.description': 'Auto Apply for R$ 19.90 per month, with one account and one active device.'
+});
+Object.assign(planCopy.es, {
+  'plan.title': 'Una cuenta.<br><em>Un plan.</em>', 'plan.intro': 'Usa Auto Apply por R$ 19,90 al mes. La suscripción pertenece a tu cuenta, no a un código suelto.',
+  'plan.tagline': 'SIMPLE Y PREDECIBLE.', 'plan.label': 'SUSCRIPCIÓN MENSUAL', 'plan.duration30': 'Acceso mientras la suscripción esté activa.', 'plan.period': '/ mes',
+  'plan.choose30': 'Abrir mi cuenta ↗', 'plan.payment': 'Renovación mensual automática. Cancela cuando quieras desde tu cuenta.', 'plan.includes': 'Todos los recursos · actualizaciones incluidas · un dispositivo activo',
+  'plan.pending': 'Entorno comercial en preparación', 'plan.note': 'El área de cuenta está disponible. Los cobros siguen bloqueados hasta validar Mercado Pago en pruebas.',
+  'plan.how.one': 'Entra en tu cuenta y gestiona la suscripción.', 'plan.how.two': 'Tras la confirmación del pago por el servidor, el acceso se asocia a tu cuenta.', 'plan.how.three': 'Introduce el código temporal en la aplicación y aprueba el equipo en tu cuenta.',
+  'plan.how.note': 'Solo un equipo puede estar activo. Aprobar otro desconecta el anterior.', 'plan.faq1.q': '¿Necesito guardar un código de licencia?', 'plan.faq1.a': 'No. Las nuevas suscripciones se vinculan a la cuenta. Los códigos antiguos quedan solo por compatibilidad.',
+  'plan.faq3.a': 'El área de cuenta ya está disponible, pero los cobros reales siguen bloqueados hasta terminar las pruebas.', 'plan.faq5.q': '¿Cómo cancelo?', 'plan.faq5.a': 'Desde tu cuenta. La cancelación detiene cargos futuros y conserva el acceso pagado hasta su vencimiento.',
+  'plan.activation.q': '¿Cuántos equipos puedo usar?', 'plan.activation.a': 'Un equipo activo a la vez. Aprobar uno nuevo desconecta el anterior.', 'plan.meta.description': 'Auto Apply por R$ 19,90 al mes, con una cuenta y un dispositivo activo.'
+});
