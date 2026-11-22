@@ -6,20 +6,24 @@
     windows: {
       label: "Baixar para Windows",
       asset: "CV-Auto-Windows-Setup.exe",
-      tag: "v2026.11.15.219-windows-beta",
-      prerelease: true,
     },
     macos: {
       label: "Baixar para Mac",
       asset: "CV-Auto-macos-arm64.dmg",
-      tag: "v2026.11.15.219",
-      prerelease: false,
     },
   };
 
-  for (const download of Object.values(downloads)) {
-    download.url = `https://github.com/${repository}/releases/download/${download.tag}/${download.asset}`;
-    download.version = version(download.tag);
+  const releaseBase = `https://github.com/${repository}/releases/download/`;
+  // Read the same known installers that work with JavaScript disabled.
+  for (const [name, download] of Object.entries(downloads)) {
+    const [fallback] = document.querySelectorAll(`[data-download-platform="${name}"]`);
+    const url = fallback?.href || "";
+    const suffix = `/${download.asset}`;
+    const tag = url.startsWith(releaseBase) && url.endsWith(suffix)
+      ? url.slice(releaseBase.length, -suffix.length)
+      : "";
+    const pinned = version(tag);
+    if (pinned) Object.assign(download, { url, version: pinned, prerelease: tag.endsWith("-windows-beta") });
   }
 
   function detectPlatform() {
@@ -43,8 +47,13 @@
   };
   function renderDownloads() {
     for (const [name, download] of Object.entries(downloads)) {
+      if (!download.version) continue;
       document.querySelectorAll(`[data-download-platform="${name}"]`).forEach(link => {
         link.href = download.url;
+      });
+      document.querySelectorAll(`[data-platform-version="${name}"]`).forEach(label => {
+        label.textContent = `Build ${download.version[3]}`;
+        label.hidden = false;
       });
       document.querySelectorAll(`[data-platform-status="${name}"]`).forEach(label => {
         label.hidden = !download.prerelease;
@@ -57,7 +66,7 @@
         card.classList.toggle("featured", name === (platform || "windows"));
       });
     }
-    if (platform) {
+    if (platform && downloads[platform].version) {
       document.querySelectorAll("[data-download-auto]").forEach(link => {
         link.href = downloads[platform].url;
         link.textContent = downloads[platform].label;
@@ -89,11 +98,12 @@
   }).then(releases => {
     if (!Array.isArray(releases)) return;
     for (const download of Object.values(downloads)) {
+      if (!download.version) continue;
       let selected = download;
       for (const release of releases) {
         const candidate = version(release.tag_name);
         if (release.draft || !candidate || !Array.isArray(release.assets)) continue;
-        const expected = `https://github.com/${repository}/releases/download/${release.tag_name}/${download.asset}`;
+        const expected = `${releaseBase}${release.tag_name}/${download.asset}`;
         const asset = release.assets.find(item =>
           item.name === download.asset && item.state === "uploaded" && item.browser_download_url === expected);
         const checksum = release.assets.find(item =>

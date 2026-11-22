@@ -39,7 +39,9 @@ test('the plans page advertises both account subscriptions without legacy checko
   assert.match(plans, /90 DIAS/);
   assert.match(plans, /name="description" content="[^"]*R\$ 19,90[^"]*R\$ 34,90/);
   assert.match(plans, /property="og:description" content="[^"]*R\$ 19,90[^"]*R\$ 34,90/);
-  assert.doesNotMatch(plans, /R\$ 14,90|plano=30|plano=90/);
+  assert.doesNotMatch(plans, /R\$ 14,90|plano=30|plano=90|data-i18n="plan\.choose(?:30|90)"/);
+  assert.match(plans, /href="\.\/#download" data-i18n="plan\.cta"/);
+  assert.match(plans, /data-i18n="plan\.account"/);
 });
 
 test('legacy purchase URLs safely transition to the account portal', () => {

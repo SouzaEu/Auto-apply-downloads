@@ -1,6 +1,7 @@
 """Hide superseded installers only after the site's current fallback is deployed."""
 
 import argparse
+from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
@@ -26,13 +27,38 @@ def all_releases():
     return [release for page in pages for release in page]
 
 
-def pinned_tags(script):
-    found = re.findall(r'tag: "(v\d{4}\.\d{1,2}\.\d{1,2}\.\d{1,6}(?:-windows-beta)?)"', script)
-    if len(found) != 2 or len(set(found)) != 2:
-        raise ValueError("Expected exactly two pinned desktop releases")
-    mac = next((tag for tag in found if not tag.endswith("-windows-beta")), None)
-    windows = next((tag for tag in found if tag.endswith("-windows-beta")), None)
-    if not mac or windows != mac + "-windows-beta":
+def pinned_tags(html):
+    paths = {
+        "macos": "CV-Auto-macos-arm64.dmg",
+        "windows": "CV-Auto-Windows-Setup.exe",
+    }
+    hrefs = {}
+
+    class DownloadLinks(HTMLParser):
+        def handle_starttag(self, tag, attrs):
+            attributes = dict(attrs)
+            platform = attributes.get("data-download-platform")
+            if tag != "a" or platform not in paths:
+                return
+            if platform in hrefs:
+                raise ValueError(f"Duplicate fallback link for {platform}")
+            hrefs[platform] = attributes.get("href", "")
+
+    DownloadLinks().feed(html)
+    base = f"https://github.com/{REPO}/releases/download/"
+    pinned = {}
+    for platform, asset in paths.items():
+        href = hrefs.get(platform, "")
+        suffix = f"/{asset}"
+        if not (href.startswith(base) and href.endswith(suffix)):
+            raise ValueError(f"Missing or invalid fallback link for {platform}")
+        tag = href[len(base):-len(suffix)]
+        if not TAG.fullmatch(tag):
+            raise ValueError(f"Invalid fallback version for {platform}")
+        pinned[platform] = tag
+
+    mac, windows = pinned["macos"], pinned["windows"]
+    if mac.endswith("-windows-beta") or windows != mac + "-windows-beta":
         raise ValueError("Pinned Mac and Windows versions differ")
     return mac, windows
 
@@ -76,10 +102,7 @@ def main():
     pages = api("pages/builds/latest")
     if pages.get("status") != "built" or pages.get("commit") != sha:
         raise ValueError("Pages has not deployed the current site commit")
-    pinned = pinned_tags((ROOT / "docs/downloads.js").read_text())
-    html = (ROOT / "docs/index.html").read_text()
-    if any(tag not in html for tag in pinned):
-        raise ValueError("HTML fallback differs from downloads.js")
+    pinned = pinned_tags((ROOT / "docs/index.html").read_text())
     old = retirement_plan(all_releases(), pinned)
     if args.apply:
         for tag in old:

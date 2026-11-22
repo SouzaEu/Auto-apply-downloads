@@ -4,6 +4,7 @@ import test from "node:test";
 import vm from "node:vm";
 
 const code = await readFile(new URL("../docs/downloads.js", import.meta.url), "utf8");
+const html = await readFile(new URL("../docs/index.html", import.meta.url), "utf8");
 const base = "https://github.com/SouzaEu/Auto-apply-downloads/releases/download/";
 const assets = { windows: "CV-Auto-Windows-Setup.exe", macos: "CV-Auto-macos-arm64.dmg" };
 
@@ -19,14 +20,20 @@ function release(tag, platform, prerelease = false) {
 
 async function page(navigator, releases = [], error = false) {
   const auto = [{ href: "#download", textContent: "Experimentar grátis" }];
-  const links = { windows: [{}], macos: [{}] };
+  const links = Object.fromEntries(Object.keys(assets).map(platform => {
+    const tag = new RegExp(`data-download-platform="${platform}"[^>]*href="([^"]+)"`).exec(html);
+    assert.ok(tag, `HTML fallback for ${platform}`);
+    return [platform, [{ href: tag[1] }]];
+  }));
   const statuses = { windows: [{}] };
+  const versions = { windows: [{}], macos: [{}] };
   const cards = { windows: [{ classList: { toggle() {} } }], macos: [{ classList: { toggle() {} } }] };
   const document = {
     querySelectorAll(selector) {
       if (selector === "[data-download-auto]") return auto;
       for (const [attribute, group] of Object.entries({
-        "data-download-platform": links, "data-platform-status": statuses, "data-platform-card": cards,
+        "data-download-platform": links, "data-platform-status": statuses, "data-platform-version": versions,
+        "data-platform-card": cards,
       })) {
         const match = new RegExp('^\\[' + attribute + '="([^"]+)"\\]$').exec(selector);
         if (match) return group[match[1]] || [];
@@ -42,7 +49,7 @@ async function page(navigator, releases = [], error = false) {
     },
   });
   await new Promise(resolve => setImmediate(resolve));
-  return { auto: auto[0], windows: links.windows[0], macos: links.macos[0], status: statuses.windows[0], cards };
+  return { auto: auto[0], windows: links.windows[0], macos: links.macos[0], status: statuses.windows[0], versions, cards };
 }
 
 test("chooses the appropriate desktop download while keeping both installers visible", async () => {
@@ -74,6 +81,8 @@ test("selects each platform independently, including the published Windows beta"
   assert.match(result.auto.href, /220-windows-beta\/CV-Auto-Windows-Setup.exe$/);
   assert.match(result.macos.href, /219\/CV-Auto-macos-arm64.dmg$/);
   assert.equal(result.status.hidden, false);
+  assert.equal(result.versions.windows[0].textContent, "Build 220");
+  assert.equal(result.versions.macos[0].textContent, "Build 219");
 });
 
 test("ignores drafts, incomplete releases, foreign URLs and older versions", async () => {
@@ -94,4 +103,5 @@ test("stable publication replaces the beta and failed lookups preserve usable li
   assert.match(stable.auto.href, /v2026.11.16.215\//);
   const offline = await page({ platform: "MacIntel" }, [], true);
   assert.match(offline.auto.href, /CV-Auto-macos-arm64.dmg$/);
+  assert.equal(offline.versions.macos[0].textContent, "Build 219");
 });

@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 from scripts.retire_old_releases import pinned_tags, retirement_plan
 
@@ -8,6 +9,7 @@ def release(tag, names):
             "assets": [{"name": name, "state": "uploaded"} for name in names]}
 
 
+HTML = (Path(__file__).parents[1] / "docs/index.html").read_text()
 PINNED = ("v2026.11.15.219", "v2026.11.15.219-windows-beta")
 CURRENT = [
     release(PINNED[0], ["CV-Auto-macos-arm64.dmg", "Auto-apply-macos-arm64.zip", "release-manifest.json"]),
@@ -17,7 +19,7 @@ CURRENT = [
 
 class ReleaseRetirementTests(unittest.TestCase):
     def test_only_complete_matching_pair_can_retire_older_release(self):
-        self.assertEqual(pinned_tags('tag: "v2026.11.15.219-windows-beta"\ntag: "v2026.11.15.219"'), PINNED)
+        self.assertEqual(pinned_tags(HTML), PINNED)
         old = release("v2026.11.15.218", ["CV-Auto-macos-arm64.dmg"])
         self.assertEqual(retirement_plan(CURRENT + [old], PINNED), [old["tag_name"]])
 
@@ -27,7 +29,7 @@ class ReleaseRetirementTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             retirement_plan(CURRENT + [release("v2026.11.15.220", [])], PINNED)
         with self.assertRaises(ValueError):
-            pinned_tags('tag: "v2026.11.15.219"\ntag: "v2026.11.15.218-windows-beta"')
+            pinned_tags(HTML.replace(PINNED[1], "v2026.11.15.218-windows-beta"))
 
 
 if __name__ == "__main__":

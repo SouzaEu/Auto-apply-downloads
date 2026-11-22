@@ -477,7 +477,7 @@ Object.assign(translations["pt-BR"], {
   "download.tag": "TESTE GRÁTIS POR 7 DIAS",
   "download.plans": "Ver plano ↗",
   "download.windows.title": "Para o seu PC.",
-  "download.windows.note": "Windows 10 ou 11 · 64 bits",
+  "download.windows.note": "Windows 10 ou 11 · x64 (Intel ou AMD)",
   "download.windows.button": "Baixar para Windows ↗",
   "download.windows.warning": "O instalador beta pode exibir um aviso do SmartScreen.",
   "download.macos.title": "Para o seu Mac.",
@@ -574,7 +574,7 @@ Object.assign(translations["en"], {
   "download.tag": "FREE 7-DAY TRIAL",
   "download.plans": "See plan ↗",
   "download.windows.title": "For your PC.",
-  "download.windows.note": "Windows 10 or 11 · 64-bit",
+  "download.windows.note": "Windows 10 or 11 · x64 (Intel or AMD)",
   "download.windows.button": "Download for Windows ↗",
   "download.windows.warning": "The beta installer may show a SmartScreen warning.",
   "download.macos.title": "For your Mac.",
@@ -671,7 +671,7 @@ Object.assign(translations["es"], {
   "download.tag": "PRUEBA GRATIS DE 7 DÍAS",
   "download.plans": "Ver plan ↗",
   "download.windows.title": "Para tu PC.",
-  "download.windows.note": "Windows 10 u 11 · 64 bits",
+  "download.windows.note": "Windows 10 u 11 · x64 (Intel o AMD)",
   "download.windows.button": "Descargar para Windows ↗",
   "download.windows.warning": "El instalador beta puede mostrar una advertencia de SmartScreen.",
   "download.macos.title": "Para tu Mac.",
@@ -756,3 +756,36 @@ Object.assign(translations['pt-BR'], {'compat.gupy':'Formulários específicos j
 Object.assign(translations.en, {'compat.gupy':'Specific forms have been validated in real use. Login, employer questions and changing steps can still block an application.','compat.inhire':'Under evaluation. A submission without an explicit receipt remains uncertain and must not be retried automatically.','compat.other.title':'Other portals','compat.other':'Detecting a portal does not prove that its full form or submission is supported. Each flow is assessed separately.','compat.updated':'Editorial summary dated 14 Nov 2026. Check release notes for later changes.','footer.privacy':'Privacy ↗'});
 Object.assign(translations.es, {'compat.gupy':'Se han validado formularios específicos en uso real. El inicio de sesión, las preguntas de la empresa y las etapas variables aún pueden bloquear una postulación.','compat.inhire':'En evaluación. Un envío sin comprobante explícito permanece incierto y no debe repetirse automáticamente.','compat.other.title':'Otros portales','compat.other':'Detectar un portal no demuestra que su formulario completo o el envío sean compatibles. Cada flujo se evalúa por separado.','compat.updated':'Resumen editorial del 14/11/2026. Consulta las notas de versión para cambios posteriores.','footer.privacy':'Privacidad ↗'});
 for (const [language, copy] of Object.entries(planCopy)) Object.assign(translations[language], copy);
+
+Object.assign(translations['pt-BR'], {
+  "compat.os.tag": "DISPONIBILIDADE E INSTALAÇÃO",
+  "compat.mac.install": "Abra o DMG e arraste o Auto Apply para Aplicativos. Confira a versão e o checksum antes de abrir.",
+  "compat.win.install": "Confirme que seu computador é x64, abra o EXE e conclua o assistente de instalação. Depois, procure Auto Apply no menu Iniciar.",
+  "compat.win.title": "Windows 10 e 11 · x64",
+  "plan.intro": "O mensal e o de 90 dias são os planos previstos. Enquanto a cobrança está em preparação, você pode baixar o app e ativar o teste de sete dias.",
+  "plan.label": "PLANOS PREVISTOS",
+  "plan.account": "Abrir área da conta ↗",
+  "download.help": "Ajuda para instalar ↗"
+});
+
+Object.assign(translations['en'], {
+  "compat.os.tag": "AVAILABILITY AND INSTALLATION",
+  "compat.mac.install": "Open the DMG and drag Auto Apply to Applications. Verify the version and checksum before opening it.",
+  "compat.win.install": "Confirm your PC is x64, open the EXE and complete the setup wizard. Then find Auto Apply in the Start menu.",
+  "compat.win.title": "Windows 10 and 11 · x64",
+  "plan.intro": "Monthly and 90-day plans are planned. While billing is being prepared, download the app and start your seven-day trial.",
+  "plan.label": "UPCOMING PLANS",
+  "plan.account": "Open account portal ↗",
+  "download.help": "Installation help ↗"
+});
+
+Object.assign(translations['es'], {
+  "compat.os.tag": "DISPONIBILIDAD E INSTALACIÓN",
+  "compat.mac.install": "Abre el DMG y arrastra Auto Apply a Aplicaciones. Comprueba la versión y la suma de verificación antes de abrirlo.",
+  "compat.win.install": "Confirma que tu equipo es x64, abre el EXE y completa el asistente. Luego busca Auto Apply en el menú Inicio.",
+  "compat.win.title": "Windows 10 y 11 · x64",
+  "plan.intro": "Están previstos los planes mensual y de 90 días. Mientras preparamos el cobro, descarga la aplicación y activa tu prueba de siete días.",
+  "plan.label": "PLANES PREVISTOS",
+  "plan.account": "Abrir área de la cuenta ↗",
+  "download.help": "Ayuda de instalación ↗"
+});
