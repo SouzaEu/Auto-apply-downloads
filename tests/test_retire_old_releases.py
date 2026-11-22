@@ -10,7 +10,7 @@ def release(tag, names):
 
 
 HTML = (Path(__file__).parents[1] / "docs/index.html").read_text()
-PINNED = ("v2026.11.15.219", "v2026.11.15.219-windows-beta")
+PINNED = ("v2026.11.22.239", "v2026.11.22.239-windows-beta")
 CURRENT = [
     release(PINNED[0], ["CV-Auto-macos-arm64.dmg", "Auto-apply-macos-arm64.zip", "release-manifest.json"]),
     release(PINNED[1], ["CV-Auto-Windows-Setup.exe", "release-manifest.json"]),
@@ -27,7 +27,7 @@ class ReleaseRetirementTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             retirement_plan(CURRENT[:1], PINNED)
         with self.assertRaises(ValueError):
-            retirement_plan(CURRENT + [release("v2026.11.15.220", [])], PINNED)
+            retirement_plan(CURRENT + [release("v2026.11.22.240", [])], PINNED)
         with self.assertRaises(ValueError):
             pinned_tags(HTML.replace(PINNED[1], "v2026.11.15.218-windows-beta"))
 

@@ -75,33 +75,33 @@ test("selects each platform independently, including the published Windows beta"
   const result = await page({ platform: "Win32" }, [
     release("v2026.11.8.188", "macos"),
     release("v2026.11.11.200", "macos"),
-    release("v2026.11.16.220-windows-beta", "windows", true),
+    release("v2026.11.23.240-windows-beta", "windows", true),
     release("v2026.11.14.210", "windows"),
   ]);
-  assert.match(result.auto.href, /220-windows-beta\/CV-Auto-Windows-Setup.exe$/);
-  assert.match(result.macos.href, /219\/CV-Auto-macos-arm64.dmg$/);
+  assert.match(result.auto.href, /240-windows-beta\/CV-Auto-Windows-Setup.exe$/);
+  assert.match(result.macos.href, /239\/CV-Auto-macos-arm64.dmg$/);
   assert.equal(result.status.hidden, false);
-  assert.equal(result.versions.windows[0].textContent, "Build 220");
-  assert.equal(result.versions.macos[0].textContent, "Build 219");
+  assert.equal(result.versions.windows[0].textContent, "Build 240");
+  assert.equal(result.versions.macos[0].textContent, "Build 239");
 });
 
 test("ignores drafts, incomplete releases, foreign URLs and older versions", async () => {
-  const draft = { ...release("v2026.11.11.220", "windows"), draft: true };
-  const incomplete = release("v2026.11.11.221", "windows");
+  const draft = { ...release("v2026.11.23.240", "windows"), draft: true };
+  const incomplete = release("v2026.11.24.241", "windows");
   incomplete.assets.pop();
-  const foreign = release("v2026.11.11.222", "windows");
+  const foreign = release("v2026.11.25.242", "windows");
   foreign.assets[0].browser_download_url = "https://example.invalid/app.exe";
   const result = await page({ platform: "Win32" }, [
     draft, incomplete, foreign, release("v2026.11.8.180", "windows"),
   ]);
-  assert.match(result.auto.href, /219-windows-beta/);
+  assert.match(result.auto.href, /239-windows-beta/);
 });
 
 test("stable publication replaces the beta and failed lookups preserve usable links", async () => {
-  const stable = await page({ platform: "Win32" }, [release("v2026.11.16.215", "windows")]);
+  const stable = await page({ platform: "Win32" }, [release("v2026.11.23.240", "windows")]);
   assert.equal(stable.status.hidden, true);
-  assert.match(stable.auto.href, /v2026.11.16.215\//);
+  assert.match(stable.auto.href, /v2026.11.23.240\//);
   const offline = await page({ platform: "MacIntel" }, [], true);
   assert.match(offline.auto.href, /CV-Auto-macos-arm64.dmg$/);
-  assert.equal(offline.versions.macos[0].textContent, "Build 219");
+  assert.equal(offline.versions.macos[0].textContent, "Build 239");
 });
