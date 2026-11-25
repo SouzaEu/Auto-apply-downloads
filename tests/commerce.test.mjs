@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { commercialConfig } from '../docs/assets/commercial-config.js';
 import { offers, selectPlan, safeAccountUrl, accountOffer } from '../docs/assets/commercial-core.js';
 
-const portal = 'https://cv-auto.freshpike132.chatgpt.site/conta';
+const portal = 'https://auto-apply-billing.vsouzaeu.workers.dev/conta';
 
 test('the public offers are monthly and 90-day account subscriptions', () => {
   assert.deepEqual(Object.keys(offers), ['monthly', 'quarterly_90']);
@@ -23,10 +23,10 @@ test('billing remains gated and points only to the canonical account portal', ()
   assert.equal(commercialConfig.accountPortal, portal);
   assert.deepEqual(accountOffer(commercialConfig), [offers.monthly, offers.quarterly_90]);
   for (const url of [
-    'http://cv-auto.freshpike132.chatgpt.site/conta',
+    'http://auto-apply-billing.vsouzaeu.workers.dev/conta',
     'https://evil.test/conta',
-    'https://cv-auto.freshpike132.chatgpt.site/other',
-    'https://user:pass@cv-auto.freshpike132.chatgpt.site/conta',
+    'https://auto-apply-billing.vsouzaeu.workers.dev/other',
+    'https://user:pass@auto-apply-billing.vsouzaeu.workers.dev/conta',
     'javascript:alert(1)'
   ]) assert.equal(safeAccountUrl(url), false, url);
 });
@@ -34,7 +34,7 @@ test('billing remains gated and points only to the canonical account portal', ()
 test('the plans page advertises both account subscriptions without legacy checkout', () => {
   const plans = readFileSync(new URL('../docs/planos.html', import.meta.url), 'utf8');
   assert.match(plans, /R\$ 19,90/);
-  assert.match(plans, /freshpike132\.chatgpt\.site\/conta/);
+  assert.match(plans, /auto-apply-billing\.vsouzaeu\.workers\.dev\/conta/);
   assert.match(plans, /R\$ 34,90/);
   assert.match(plans, /90 DIAS/);
   assert.match(plans, /name="description" content="[^"]*R\$ 19,90[^"]*R\$ 34,90/);
@@ -48,7 +48,7 @@ test('legacy purchase URLs safely transition to the account portal', () => {
   for (const name of ['comprar.html', 'checkout.html', 'pagamento.html', 'acesso.html']) {
     const page = readFileSync(new URL(`../docs/${name}`, import.meta.url), 'utf8');
     assert.match(page, /http-equiv="refresh"/);
-    assert.match(page, /freshpike132\.chatgpt\.site\/conta/);
+    assert.match(page, /auto-apply-billing\.vsouzaeu\.workers\.dev\/conta/);
     assert.doesNotMatch(page, /DEMO-|CV-[A-F0-9]|plano=30|plano=90/);
   }
 });

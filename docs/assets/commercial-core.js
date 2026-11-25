@@ -9,7 +9,7 @@ export function safeAccountUrl(value) {
   try {
     const url = new URL(value);
     return url.protocol === 'https:' && !url.username && !url.password && !url.port &&
-      url.hostname === 'cv-auto.freshpike132.chatgpt.site' && url.pathname === '/conta';
+      url.hostname === 'auto-apply-billing.vsouzaeu.workers.dev' && url.pathname === '/conta';
   } catch { return false; }
 }
 export function accountOffer(config) {

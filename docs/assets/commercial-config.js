@@ -2,5 +2,5 @@
 // Billing remains disabled until Mercado Pago sandbox validation is complete.
 export const commercialConfig = Object.freeze({
   salesEnabled: false,
-  accountPortal: 'https://cv-auto.freshpike132.chatgpt.site/conta'
+  accountPortal: 'https://auto-apply-billing.vsouzaeu.workers.dev/conta'
 });
