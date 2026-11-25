@@ -5,23 +5,25 @@
   const downloads = {
     windows: {
       label: "Baixar para Windows",
-      asset: "CV-Auto-Windows-Setup.exe",
+      asset: "Auto-Apply-Windows-Setup.exe",
+      legacyAsset: "CV-Auto-Windows-Setup.exe",
     },
     macos: {
       label: "Baixar para Mac",
-      asset: "CV-Auto-macos-arm64.dmg",
+      asset: "Auto-Apply-macos-arm64.dmg",
+      legacyAsset: "CV-Auto-macos-arm64.dmg",
     },
   };
 
   const releaseBase = `https://github.com/${repository}/releases/download/`;
+  const gateway = 'https://auto-apply-billing.vsouzaeu.workers.dev/downloads/';
+  const brandedURL = (platform, tag) => `${gateway}${platform}?tag=${encodeURIComponent(tag)}`;
   // Read the same known installers that work with JavaScript disabled.
   for (const [name, download] of Object.entries(downloads)) {
     const [fallback] = document.querySelectorAll(`[data-download-platform="${name}"]`);
     const url = fallback?.href || "";
-    const suffix = `/${download.asset}`;
-    const tag = url.startsWith(releaseBase) && url.endsWith(suffix)
-      ? url.slice(releaseBase.length, -suffix.length)
-      : "";
+    const prefix = `${gateway}${name}?tag=`;
+    const tag = url.startsWith(prefix) ? decodeURIComponent(url.slice(prefix.length)) : '';
     const pinned = version(tag);
     if (pinned) Object.assign(download, { url, version: pinned, prerelease: tag.endsWith("-windows-beta") });
   }
@@ -75,7 +77,7 @@
   }
 
   function version(tag) {
-    const match = /^(?:autoapply-)?v(\d{4})\.(\d{1,2})\.(\d{1,2})\.(\d{1,6})(?:-[a-z0-9.-]+)?$/i.exec(tag || "");
+    const match = /^(?:autoapply-)?v(\d{4})\.(\d{1,2})\.(\d{1,2})\.(\d{1,6})(?:-windows-beta)?$/i.exec(tag || "");
     return match ? match.slice(1).map(Number) : null;
   }
 
@@ -97,22 +99,21 @@
     return response.json();
   }).then(releases => {
     if (!Array.isArray(releases)) return;
-    for (const download of Object.values(downloads)) {
+    for (const [platformName, download] of Object.entries(downloads)) {
       if (!download.version) continue;
       let selected = download;
       for (const release of releases) {
         const candidate = version(release.tag_name);
         if (release.draft || !candidate || !Array.isArray(release.assets)) continue;
-        const expected = `${releaseBase}${release.tag_name}/${download.asset}`;
-        const asset = release.assets.find(item =>
-          item.name === download.asset && item.state === "uploaded" && item.browser_download_url === expected);
-        const checksum = release.assets.find(item =>
-          item.name === download.asset + ".sha256" && item.state === "uploaded"
-          && item.browser_download_url === expected + ".sha256");
-        if (!asset || !checksum) continue;
+        const complete = [download.asset, download.legacyAsset].some(name => {
+          const expected = `${releaseBase}${release.tag_name}/${name}`;
+          return release.assets.some(item => item.name === name && item.state === 'uploaded' && item.browser_download_url === expected)
+            && release.assets.some(item => item.name === name + '.sha256' && item.state === 'uploaded' && item.browser_download_url === expected + '.sha256');
+        });
+        if (!complete) continue;
         if (compare(candidate, selected.version) > 0
             || (compare(candidate, selected.version) === 0 && selected.prerelease && !release.prerelease)) {
-          selected = { version: candidate, url: expected, prerelease: Boolean(release.prerelease) };
+          selected = { version: candidate, url: brandedURL(platformName,release.tag_name), prerelease: Boolean(release.prerelease) };
         }
       }
       Object.assign(download, selected);

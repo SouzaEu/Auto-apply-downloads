@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+from urllib.parse import urlparse, parse_qs
 
 
 REPO = "SouzaEu/Auto-apply-downloads"
@@ -50,9 +51,14 @@ def pinned_tags(html):
     for platform, asset in paths.items():
         href = hrefs.get(platform, "")
         suffix = f"/{asset}"
-        if not (href.startswith(base) and href.endswith(suffix)):
+        parsed = urlparse(href)
+        query = parse_qs(parsed.query)
+        if parsed.scheme == 'https' and parsed.netloc == 'auto-apply-billing.vsouzaeu.workers.dev' and parsed.path == f'/downloads/{platform}' and set(query) == {'tag'} and len(query['tag']) == 1:
+            tag = query['tag'][0]
+        elif href.startswith(base) and href.endswith(suffix):
+            tag = href[len(base):-len(suffix)]
+        else:
             raise ValueError(f"Missing or invalid fallback link for {platform}")
-        tag = href[len(base):-len(suffix)]
         if not TAG.fullmatch(tag):
             raise ValueError(f"Invalid fallback version for {platform}")
         pinned[platform] = tag
